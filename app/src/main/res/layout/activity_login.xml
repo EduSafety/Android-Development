@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="22dp"
+    tools:context=".ui.LoginActivity">
+
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_height="19dp"
+        android:layout_width="19dp"
+        android:src="@drawable/baseline_keyboard_arrow_left_24"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/header_title"
+        android:layout_marginTop="28dp"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/urbanist_bold"
+        android:text="Welcome Back! Glad to see you, Again!"
+        android:textColor="@color/dark"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/back_button" />
+
+    <EditText
+        android:id="@+id/edtFullname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:height="56dp"
+        android:background="@drawable/rounded_input"
+        android:fontFamily="@font/urbanist_medium"
+        android:hint="Enter Your Email"
+        android:paddingStart="20dp"
+        android:textColorHint="@color/gray"
+        android:textSize="15dp"
+        app:layout_constraintTop_toBottomOf="@id/header_title" />
+
+    <EditText
+        android:id="@+id/edtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:height="56dp"
+        android:background="@drawable/rounded_input"
+        android:fontFamily="@font/urbanist_medium"
+        android:hint="Enter Your Password"
+        android:paddingStart="20dp"
+        android:textColorHint="@color/gray"
+        android:textSize="15dp"
+        app:layout_constraintTop_toBottomOf="@id/edtFullname" />
+
+    <TextView
+        android:id="@+id/forgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/urbanist_semibold"
+        android:text="Forgot Password?"
+        android:textSize="14dp"
+        android:textColor="@color/primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtEmail" />
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="37dp"
+        android:height="56dp"
+        android:background="@drawable/rectangle_background"
+        android:fontFamily="@font/urbanist_semibold"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/forgotPassword" />
+
+    <TextView
+        android:id="@+id/orLoginWith"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:fontFamily="@font/urbanist_semibold"
+        android:text="Or Login With"
+        android:textSize="14dp"
+        android:textColor="@color/dark_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loginBtn" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/loginWithGoogle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="37dp"
+        android:height="56dp"
+        android:background="@drawable/rectangle_background"
+        android:drawableStart="@drawable/ic_google"
+        android:drawablePadding="85dp"
+        android:fontFamily="@font/urbanist_semibold"
+        android:gravity="start|center_vertical"
+        android:paddingStart="20dp"
+        android:text="Login With Google"
+        android:textAllCaps="false"
+        android:textColor="@color/dark"
+        app:layout_constraintTop_toBottomOf="@id/orLoginWith" />
+
+
+
+    <TextView
+        android:id="@+id/dontHaveAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:fontFamily="@font/urbanist_medium"
+        android:text="Don't have an account?"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.271"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/registerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/urbanist_bold"
+        android:text="Register Now"
+        android:textColor="@color/primary"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/dontHaveAccount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.767"
+        app:layout_constraintBaseline_toBaselineOf="@id/dontHaveAccount"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
