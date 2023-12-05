@@ -1,0 +1,84 @@
+{
+  "project_info": {
+    "project_number": "108467967394",
+    "project_id": "capstone-85334",
+    "storage_bucket": "capstone-85334.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:108467967394:android:07352072bc1fecdc798efb",
+        "android_client_info": {
+          "package_name": "com.dicoding.capstone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "108467967394-ukarmgjictotlroqaq04ajcdqvu0r11e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dicoding.capstone",
+            "certificate_hash": "e4a44132d290cd3aef04895ac8014dbcadd3f4f4"
+          }
+        },
+        {
+          "client_id": "108467967394-trc6rpogpgqf8bibvqoo3b9uhts11n1a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLbq7EQq6JX7WImI2i7yI3Q0ld4aQ7CjM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "108467967394-trc6rpogpgqf8bibvqoo3b9uhts11n1a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:108467967394:android:03e9ce199e62592e798efb",
+        "android_client_info": {
+          "package_name": "com.dicoding.edusafety"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "108467967394-ai7ktj3vjfv1682ric30n40ed2gmblnv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dicoding.edusafety",
+            "certificate_hash": "e4a44132d290cd3aef04895ac8014dbcadd3f4f4"
+          }
+        },
+        {
+          "client_id": "108467967394-trc6rpogpgqf8bibvqoo3b9uhts11n1a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLbq7EQq6JX7WImI2i7yI3Q0ld4aQ7CjM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "108467967394-trc6rpogpgqf8bibvqoo3b9uhts11n1a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
