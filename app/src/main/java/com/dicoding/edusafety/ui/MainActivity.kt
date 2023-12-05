@@ -1,8 +1,6 @@
 package com.dicoding.edusafety.ui
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.dicoding.edusafety.R
@@ -30,11 +28,9 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-
         //simulasi login, delete soon (kalo fitur login dah bisa eakk)
-        isLogin()
-        Log.d("MainActivity","isLogin: $isLogin")
-
+//        isLogin()
+//        Log.d("MainActivity","isLogin: $isLogin")
     }
 
     private fun replaceFragment(fragment: Fragment) {
@@ -45,16 +41,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    //simulasi login, delete soon
-    private fun isLogin(){
-        if (!isLogin){
-            startActivity(Intent(this,InitialPage::class.java))
-        }
-    }
+//    //simulasi login, delete soon
+//    private fun isLogin(){
+//        if (!isLogin){
+//            startActivity(Intent(this,InitialPage::class.java))
+//        }
+//    }
 
     //delete soon
-    companion object{
-        var isLogin = false
-    }
+//    companion object{
+//        var isLogin = false
+//    }
 
 }

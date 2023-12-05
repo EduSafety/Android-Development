@@ -125,4 +125,14 @@
             android:src="@drawable/baseline_edit_24" />
     </LinearLayout>
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="98dp" />
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:text="Logout" />
+
 </LinearLayout>

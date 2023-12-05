@@ -19,5 +19,4 @@ class InitialPage : AppCompatActivity() {
             startActivity(Intent(this,RegisterActivity::class.java))
         }
     }
-
 }
