@@ -32,12 +32,13 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.backButton.setOnClickListener{
-            startActivity(Intent(this,InitialPage::class.java))
+            onBackPressed()
         }
 
         binding.loginBtn.setOnClickListener{
 //            MainActivity.isLogin = true
             startActivity(Intent(this,MainActivity::class.java))
+            finishAffinity()
         }
 
         binding.registerButton.setOnClickListener{

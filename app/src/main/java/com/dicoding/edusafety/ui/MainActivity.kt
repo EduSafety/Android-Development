@@ -1,17 +1,21 @@
 package com.dicoding.edusafety.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.dicoding.edusafety.R
+import com.dicoding.edusafety.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navigationView: BottomNavigationView
+    private lateinit var binding : ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         replaceFragment(HomeFragment())
 
@@ -28,9 +32,10 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-        //simulasi login, delete soon (kalo fitur login dah bisa eakk)
-//        isLogin()
-//        Log.d("MainActivity","isLogin: $isLogin")
+
+        binding.fab.setOnClickListener{
+            startActivity(Intent(this,ReportActivity::class.java))
+        }
     }
 
     private fun replaceFragment(fragment: Fragment) {
@@ -40,17 +45,5 @@ class MainActivity : AppCompatActivity() {
             commit()
         }
     }
-
-//    //simulasi login, delete soon
-//    private fun isLogin(){
-//        if (!isLogin){
-//            startActivity(Intent(this,InitialPage::class.java))
-//        }
-//    }
-
-    //delete soon
-//    companion object{
-//        var isLogin = false
-//    }
 
 }

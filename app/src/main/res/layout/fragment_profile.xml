@@ -9,19 +9,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp">
 
         <ImageView
-            android:id="@+id/back_arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:src="@drawable/baseline_keyboard_arrow_left_24"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-
             android:id="@+id/imageView"
             android:layout_width="52dp"
             android:layout_height="52dp"
@@ -29,17 +20,17 @@
             android:clipToOutline="true"
             android:outlineProvider="background"
             android:src="@drawable/foto_saya_dicoding"
-            app:layout_constraintBottom_toBottomOf="@+id/back_arrow"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/back_arrow"
-            app:layout_constraintTop_toTopOf="@id/back_arrow" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        " />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/urbanist_bold"
-            android:text="Jawir Mantap"
+            android:text="Dave Leonard"
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@id/imageView"
@@ -132,7 +123,13 @@
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="match_parent"
-        android:layout_height="63dp"
-        android:text="Logout" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="37dp"
+        android:height="56dp"
+        android:background="@drawable/rectangle_background"
+        android:fontFamily="@font/urbanist_semibold"
+        android:text="Logout"
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
 
 </LinearLayout>

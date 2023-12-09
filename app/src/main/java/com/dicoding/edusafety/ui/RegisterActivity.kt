@@ -13,11 +13,11 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.backButton.setOnClickListener{
-            startActivity(Intent(this,InitialPage::class.java))
+            onBackPressed()
         }
 
         binding.btnRegister.setOnClickListener{
-            startActivity(Intent(this,LoginActivity::class.java))
+            startActivity(Intent(this,RegisterSuccessActivity::class.java))
         }
     }
 }
