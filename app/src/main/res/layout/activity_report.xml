@@ -200,7 +200,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/urbanist_bold"
-                android:text="Lampirkan Butki (Opsional)"
+                android:text="Lampirkan Bukti (Opsional)"
                 app:layout_constraintEnd_toEndOf="@id/imageAttachFile"
                 app:layout_constraintStart_toStartOf="@+id/imageAttachFile"
                 app:layout_constraintTop_toBottomOf="@id/imageAttachFile" />
