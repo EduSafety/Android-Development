@@ -1,5 +1,6 @@
 package com.dicoding.edusafety.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,8 +17,11 @@ class ReportHistoryActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setRecentAdapter()
-        binding.backArrow.setOnClickListener{
+        binding.backArrow.setOnClickListener {
             onBackPressed()
+        }
+        binding.fab.setOnClickListener {
+            startActivity(Intent(this, ReportActivity::class.java))
         }
     }
 
@@ -25,6 +29,18 @@ class ReportHistoryActivity : AppCompatActivity() {
         binding.rvHistory.layoutManager = LinearLayoutManager(this)
 
         val itemList = listOf(
+            MyItem(R.drawable.foto_saya_dicoding, "Jawir", "Verbal Abuse"),
+            MyItem(R.drawable.foto_saya_dicoding, "Mas Jawir", "Physical Assault"),
+            MyItem(R.drawable.foto_saya_dicoding, "Dave Leonard", "Bullying"),
+            MyItem(R.drawable.foto_saya_dicoding, "Jawir", "Verbal Abuse"),
+            MyItem(R.drawable.foto_saya_dicoding, "Mas Jawir", "Physical Assault"),
+            MyItem(R.drawable.foto_saya_dicoding, "Dave Leonard", "Bullying"),
+            MyItem(R.drawable.foto_saya_dicoding, "Jawir", "Verbal Abuse"),
+            MyItem(R.drawable.foto_saya_dicoding, "Mas Jawir", "Physical Assault"),
+            MyItem(R.drawable.foto_saya_dicoding, "Dave Leonard", "Bullying"),
+            MyItem(R.drawable.foto_saya_dicoding, "Jawir", "Verbal Abuse"),
+            MyItem(R.drawable.foto_saya_dicoding, "Mas Jawir", "Physical Assault"),
+            MyItem(R.drawable.foto_saya_dicoding, "Dave Leonard", "Bullying"),
             MyItem(R.drawable.foto_saya_dicoding, "Jawir", "Verbal Abuse"),
             MyItem(R.drawable.foto_saya_dicoding, "Mas Jawir", "Physical Assault"),
             MyItem(R.drawable.foto_saya_dicoding, "Dave Leonard", "Bullying"),
