@@ -21,7 +21,7 @@ interface ApiService {
     suspend fun register(
         @Field("name") name: String,
         @Field("email") email: String,
-        @Field("phone") phone: Editable,
+        @Field("phone") phone: Editable?,
         @Field("password") password: String
     ): Response<RegisterResponse>
 }

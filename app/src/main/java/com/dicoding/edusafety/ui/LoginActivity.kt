@@ -68,8 +68,8 @@ class LoginActivity : AppCompatActivity() {
                 Log.d("LOADING", "$it")
             }
 
-            val email = binding.edtEmail.text.toString()
-            val password = binding.edtPassword.text.toString()
+            val email = binding.emailEditText.text.toString()
+            val password = binding.passwordEditText.text.toString()
 
 
             viewModelApi.login(email, password)
@@ -89,8 +89,8 @@ class LoginActivity : AppCompatActivity() {
                 checkAndSetErrorForEmptyField(binding.emailEditText, binding.emailContainer, "Email is required")
                 checkAndSetErrorForEmptyField(binding.passwordEditText, binding.passwordContainer, "Password is required")
             }
-          }
         }
+
 
         binding.registerButton.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
