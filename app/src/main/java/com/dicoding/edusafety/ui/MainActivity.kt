@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this,ReportActivity::class.java))
         }
         auth = Firebase.auth
+        validate()
     }
 
     private fun replaceFragment(fragment: Fragment) {
@@ -67,9 +68,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
+    private fun validate(){
         val currentUser = auth.currentUser
         if (currentUser == null) {
             Log.d("noAuthGoogle", "RUN ERROR")
@@ -83,4 +82,20 @@ class MainActivity : AppCompatActivity() {
             updateUI(currentUser)
         }
     }
+//    override fun onStart() {
+//        super.onStart()
+//        // Check if user is signed in (non-null) and update UI accordingly.
+//        val currentUser = auth.currentUser
+//        if (currentUser == null) {
+//            Log.d("noAuthGoogle", "RUN ERROR")
+//            viewModel.getSession().observe(this) { user ->
+//                if (!user.isLogin) {
+//                    startActivity(Intent(this@MainActivity, InitialPage::class.java))
+//                    finish()
+//                }
+//            }
+//        } else {
+//            updateUI(currentUser)
+//        }
+//    }
 }

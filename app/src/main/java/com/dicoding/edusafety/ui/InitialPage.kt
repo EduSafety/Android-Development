@@ -33,6 +33,7 @@ class InitialPage : AppCompatActivity() {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
         auth = Firebase.auth
+        validate()
     }
 
     private fun updateUI(currentUser: FirebaseUser?) {
@@ -42,9 +43,7 @@ class InitialPage : AppCompatActivity() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
+    private fun validate(){
         val currentUser = auth.currentUser
         if (currentUser != null) {
             Log.d("AuthGoogle", "TRUE")
@@ -59,4 +58,21 @@ class InitialPage : AppCompatActivity() {
             }
         }
     }
+//    override fun onStart() {
+//        super.onStart()
+//        // Check if user is signed in (non-null) and update UI accordingly.
+//        val currentUser = auth.currentUser
+//        if (currentUser != null) {
+//            Log.d("AuthGoogle", "TRUE")
+//            updateUI(currentUser)
+//        } else {
+//            Log.d("AuthGoogle", "FALSE")
+//            viewModel.getSession().observe(this) { user ->
+//                if (user.isLogin) {
+//                    startActivity(Intent(this@InitialPage, MainActivity::class.java))
+//                    finish()
+//                }
+//            }
+//        }
+//    }
 }
