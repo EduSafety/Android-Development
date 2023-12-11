@@ -7,6 +7,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.dicoding.edusafety.R
+
+import com.dicoding.edusafety.databinding.ActivityMainBinding
 import com.dicoding.edusafety.viewmodel.MainViewModel
 import com.dicoding.edusafety.viewmodel.ViewModelFactory
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -17,6 +19,7 @@ import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navigationView: BottomNavigationView
+    private lateinit var binding : ActivityMainBinding
     private lateinit var auth: FirebaseAuth
 
     private val viewModel by viewModels<MainViewModel> {
@@ -25,7 +28,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         replaceFragment(HomeFragment())
 
@@ -42,21 +46,10 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+        binding.fab.setOnClickListener{
+            startActivity(Intent(this,ReportActivity::class.java))
+        }
         auth = Firebase.auth
-//        val authGoogle: Boolean = auth.currentUser != null
-
-//        if (!authGoogle){
-//            startActivity(Intent(this, InitialPage::class.java))
-//            Log.d("noAuthGoogle", "RUN")
-//            finish()
-//        } else {
-//            viewModel.getSession().observe(this) { user ->
-//                if (!user.isLogin) {
-//                    startActivity(Intent(this, InitialPage::class.java))
-//                    finish()
-//                }
-//            }
-//        }
     }
 
     private fun replaceFragment(fragment: Fragment) {

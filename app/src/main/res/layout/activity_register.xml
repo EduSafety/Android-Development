@@ -44,76 +44,146 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/headerTitle" />
 
-        <EditText
-            android:id="@+id/edtFullname"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtFullnameContainer"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:helperText=""
+            app:helperTextTextColor="@android:color/holo_red_dark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:height="56dp"
-            android:background="@drawable/rounded_input"
-            android:fontFamily="@font/urbanist_medium"
-            android:hint="Enter Your Fullname"
-            android:paddingStart="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:textColorHint="@color/gray"
-            android:textSize="15dp"
-            app:layout_constraintTop_toBottomOf="@id/subHeader" />
+            app:layout_constraintTop_toBottomOf="@id/subHeader">
 
-        <EditText
-            android:id="@+id/edtEmail"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtFullname"
+                android:layout_width="match_parent"
+                android:lines="1"
+                android:inputType="text"
+                android:layout_height="56dp"
+                android:textSize="15sp"
+                android:fontFamily="@font/urbanist_medium"
+                android:background="@drawable/rounded_input"
+                android:hint="Enter Your Fullname"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtEmailContainer"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:helperText=""
+            app:helperTextTextColor="@android:color/holo_red_dark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:height="56dp"
-            android:background="@drawable/rounded_input"
-            android:fontFamily="@font/urbanist_medium"
-            android:hint="Enter Your Email"
-            android:paddingStart="20dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:textColorHint="@color/gray"
-            android:textSize="15dp"
-            app:layout_constraintTop_toBottomOf="@id/edtFullname" />
+            app:layout_constraintTop_toBottomOf="@id/edtFullnameContainer">
 
-        <EditText
-            android:id="@+id/edtPhone"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtEmail"
+                android:layout_width="match_parent"
+                android:lines="1"
+                android:inputType="textEmailAddress"
+                android:layout_height="56dp"
+                android:textSize="15sp"
+                android:fontFamily="@font/urbanist_medium"
+                android:background="@drawable/rounded_input"
+                android:hint="Enter Your Email"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtPhoneNumberContainer"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:helperText=""
+            app:helperTextTextColor="@android:color/holo_red_dark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:height="56dp"
-            android:background="@drawable/rounded_input"
-            android:fontFamily="@font/urbanist_medium"
-            android:hint="Enter Your Phone number"
-            android:paddingStart="20dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:textColorHint="@color/gray"
+
+            app:layout_constraintTop_toBottomOf="@id/edtEmailContainer">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtPhoneNumber"
+                android:layout_width="match_parent"
+                android:lines="1"
+                android:inputType="number"
+                android:layout_height="56dp"
+                android:maxLength="13"
+                android:textSize="15sp"
+                android:fontFamily="@font/urbanist_medium"
+                android:background="@drawable/rounded_input"
+                android:hint="Enter Your Phone Number"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtPasswordContainer"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:helperText=""
+            app:helperTextTextColor="@android:color/holo_red_dark"
+
             android:textSize="15dp"
             app:layout_constraintTop_toBottomOf="@id/edtEmail"
             tools:layout_editor_absoluteX="22dp" />
 
-        <EditText
-            android:id="@+id/edtPassword"
+<!--         <EditText
+            android:id="@+id/edtPassword" -->
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:height="56dp"
-            android:background="@drawable/rounded_input"
-            android:fontFamily="@font/urbanist_medium"
-            android:hint="Enter Your Password"
-            android:paddingStart="20dp"
+            android:layout_marginTop="12dp"
+            app:passwordToggleEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:textColorHint="@color/gray"
-            android:textSize="15dp"
-            app:layout_constraintTop_toBottomOf="@id/edtPhone" />
+            app:layout_constraintTop_toBottomOf="@id/edtPhoneNumberContainer">
 
-        <EditText
-            android:id="@+id/edtConfirmPassword"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtPassword"
+                android:layout_width="match_parent"
+                android:lines="1"
+                android:inputType="textPassword"
+                android:layout_height="56dp"
+                android:textSize="15sp"
+                android:fontFamily="@font/urbanist_medium"
+                android:background="@drawable/rounded_input"
+                android:hint="Enter Your Password"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtConfirmPasswordContainer"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:helperText=""
+            app:helperTextTextColor="@android:color/holo_red_dark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:height="56dp"
-            android:background="@drawable/rounded_input"
-            android:fontFamily="@font/urbanist_medium"
-            android:hint="Enter Your Password"
-            android:paddingStart="20dp"
+            android:layout_marginTop="12dp"
+            app:passwordToggleEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:textColorHint="@color/gray"
-            android:textSize="15dp"
-            app:layout_constraintTop_toBottomOf="@id/edtPassword" />
+            app:layout_constraintTop_toBottomOf="@id/edtPasswordContainer">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfirmPassword"
+                android:layout_width="match_parent"
+                android:lines="1"
+                android:inputType="textPassword"
+                android:layout_height="56dp"
+                android:textSize="15sp"
+                android:fontFamily="@font/urbanist_medium"
+                android:background="@drawable/rounded_input"
+                android:hint="Confirm Your Password"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btn_register"
@@ -126,7 +196,7 @@
             android:text="Register"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            app:layout_constraintTop_toBottomOf="@id/edtConfirmPassword" />
+            app:layout_constraintTop_toBottomOf="@id/edtConfirmPasswordContainer" />
 
 
         <TextView

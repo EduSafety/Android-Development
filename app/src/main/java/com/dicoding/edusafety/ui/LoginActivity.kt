@@ -3,10 +3,15 @@ package com.dicoding.edusafety.ui
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Patterns
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
+
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
@@ -26,6 +31,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -43,10 +50,12 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.backButton.setOnClickListener {
-            startActivity(Intent(this, InitialPage::class.java))
+            onBackPressed()
         }
 
         binding.loginBtn.setOnClickListener {
+            if (areAllFieldsFilled()) {
+                // All fields are filled, navigate to MainActivity
             val factoryApi: LoginViewModelFactory = LoginViewModelFactory.getInstance()
             val viewModelApi =
                 ViewModelProvider(this, factoryApi)[LoginActivityViewModel::class.java]
@@ -63,22 +72,24 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.edtPassword.text.toString()
 
 
-            if (email.isNotBlank() && password.isNotBlank()) {
-                viewModelApi.login(email, password)
-                viewModelApi.validLogin.observe(this) {
-                    if (it != null) {
+            viewModelApi.login(email, password)
+            viewModelApi.validLogin.observe(this) {
+                   if (it != null) {
                         validLogin(it)
                         viewModelApi.resetRegisterResponse()
                         viewModelApi.token.observe(this, Observer { token ->
                             viewModel.saveSession(UserModel(email, token.toString(), true))
                             startActivity(Intent(this, MainActivity::class.java))
                             Log.d("TOKEN MASUK", "$token")
-                        })
-                    }
-                }
+                       })
+                   }
+               }
             } else {
-//                showAlertDialog("PERINGATAN", "Mohon lengkapi data terlebih dahulu", "OK")
+                // Display error messages for empty fields
+                checkAndSetErrorForEmptyField(binding.emailEditText, binding.emailContainer, "Email is required")
+                checkAndSetErrorForEmptyField(binding.passwordEditText, binding.passwordContainer, "Password is required")
             }
+          }
         }
 
         binding.registerButton.setOnClickListener {
@@ -98,6 +109,10 @@ class LoginActivity : AppCompatActivity() {
         binding.loginWithGoogle.setOnClickListener {
             signIn()
         }
+
+        //login validation
+        emailFocusListener()
+        passwordFocusListener()
     }
 
     private fun signIn() {
@@ -142,7 +157,6 @@ class LoginActivity : AppCompatActivity() {
 
     private fun updateUI(currentUser: FirebaseUser?) {
         if (currentUser != null) {
-            Log.d(TAG, "GAGAL")
             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
             finish()
         }
@@ -153,6 +167,75 @@ class LoginActivity : AppCompatActivity() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         updateUI(currentUser)
+    }
+
+    private fun emailFocusListener() {
+        binding.emailEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.emailContainer.helperText = validEmail()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+        })
+    }
+
+    private fun validEmail(): String? {
+        val emailText = binding.emailEditText.text.toString()
+        if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
+            return "Invalid Email Address"
+        }
+        return null
+    }
+
+    private fun passwordFocusListener() {
+        binding.passwordEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.passwordContainer.helperText = validPassword()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+        })
+    }
+
+    private fun validPassword(): String? {
+        val passwordText = binding.passwordEditText.text.toString()
+        if (passwordText.length < 8) {
+            return "Minimum 8 Character Password"
+        }
+        if (!passwordText.matches(".*[A-Z].*".toRegex())) {
+            return "Must Contain 1 Upper-case Character"
+        }
+        if (!passwordText.matches(".*[a-z].*".toRegex())) {
+            return "Must Contain 1 Lower-case Character"
+        }
+        if (!passwordText.matches(".*[@#\$%^&+=].*".toRegex())) {
+            return "Must Contain 1 Special Character (@#\$%^&+=)"
+        }
+
+        return null
+    }
+
+    private fun areAllFieldsFilled(): Boolean {
+        return binding.passwordEditText.text?.isNotBlank() == true &&
+                binding.emailEditText.text?.isNotBlank() == true
+    }
+
+    private fun checkAndSetErrorForEmptyField(
+        editText: TextInputEditText,
+        container: TextInputLayout,
+        errorMessage: String
+    ) {
+        if (editText.text?.isBlank() == true) {
+            container.helperText = errorMessage
+        }
     }
 
     companion object {
