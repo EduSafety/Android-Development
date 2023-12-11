@@ -32,16 +32,13 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         app:helperText=""
         app:helperTextTextColor="@android:color/holo_red_dark"
-<!--     <EditText
-        android:id="@+id/edtEmail" -->
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:textColorHint="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header_title">
+        app:layout_constraintTop_toBottomOf="@id/header_title" >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailEditText"
@@ -53,7 +50,6 @@
             android:fontFamily="@font/urbanist_medium"
             android:background="@drawable/rounded_input"
             android:hint="Email"/>
-
 
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -192,11 +188,11 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="48dp"
-        app:layout_constraintEnd_toStartOf="@+id/forgotPassword"
-        app:layout_constraintTop_toBottomOf="@+id/edtPassword"
-        android:visibility="gone" />
+        android:layout_marginTop="312dp"
+        android:layout_marginEnd="160dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
