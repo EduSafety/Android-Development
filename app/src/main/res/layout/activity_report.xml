@@ -53,135 +53,145 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/containerAutoComplete"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="38dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:textColorHint="@color/gray"
+            app:helperText=""
+            app:helperTextTextColor="@android:color/holo_red_dark">
 
             <AutoCompleteTextView
                 android:id="@+id/autoComplete"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="56dp"
                 android:layout_weight="1"
                 android:background="@drawable/rectangle_background"
                 android:backgroundTint="#F7F8F9"
                 android:fontFamily="@font/urbanist_semibold"
+                android:hint="Kategori Kekerasan"
+                android:text="Bulliying"
                 android:inputType="none"
                 android:padding="18dp"
-                android:text="Kategori Kekerasan"
                 android:textColor="#6A707C"
                 android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
-            android:id="@+id/edtEmail"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/containerEdtNamaPelaku"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/rectangle_background"
-            android:backgroundTint="#F7F8F9"
-            android:padding="18dp">
+            android:layout_marginTop="15dp"
+            android:textColorHint="@color/gray"
+            app:helperText=""
+            app:helperTextTextColor="@android:color/holo_red_dark">
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@null"
-                android:maxLength="40"
-                android:fontFamily="@font/urbanist_semibold"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtNamaPelaku"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/rectangle_background"
+                android:backgroundTint="#F7F8F9"
+                android:fontFamily="@font/urbanist_medium"
                 android:hint="Nama Pelaku"
-                android:textColor="#6A707C"
-                android:textColorHint="#ccc"
-                android:textSize="14sp" />
-        </LinearLayout>
+                android:inputType="text"
+                android:lines="1"
+                android:maxLength="30"
+                android:textSize="15sp" />
 
-        <LinearLayout
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/containerEdtNamaKorban"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/rectangle_background"
-            android:backgroundTint="#F7F8F9"
-            android:padding="18dp">
+            android:layout_marginTop="15dp"
+            android:textColorHint="@color/gray"
+            app:helperText=""
+            app:helperTextTextColor="@android:color/holo_red_dark">
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxLength="40"
-                android:layout_weight="1"
-                android:background="@null"
-                android:fontFamily="@font/urbanist_semibold"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtNamaKorban"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/rectangle_background"
+                android:backgroundTint="#F7F8F9"
+                android:fontFamily="@font/urbanist_medium"
                 android:hint="Nama Korban"
-                android:textColor="#6A707C"
-                android:textColorHint="#ccc"
-                android:textSize="14sp" />
+                android:inputType="text"
+                android:lines="1"
+                android:maxLength="30"
+                android:textSize="15sp" />
 
-        </LinearLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tvDateContainer"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/rectangle_background"
-            android:backgroundTint="#F7F8F9"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="18dp">
+            android:layout_marginTop="15dp"
+            android:textColorHint="@color/gray"
+            app:endIconDrawable="@drawable/baseline_calendar_month_24"
+            app:endIconMode="custom"
+            app:helperText=""
+            app:helperTextTextColor="@android:color/holo_red_dark">
 
-            <TextView
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tvDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@null"
-                android:fontFamily="@font/urbanist_semibold"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/rectangle_background"
+                android:backgroundTint="#F7F8F9"
+                android:clickable="true"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:fontFamily="@font/urbanist_medium"
                 android:hint="Tanggal Kejadian"
-                android:textColor="#6A707C"
-                android:textColorHint="#ccc"
-                android:textSize="14sp" />
+                android:inputType="none"
+                android:lines="1"
+                android:maxLength="10"
+                android:textSize="15sp" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/baseline_calendar_month_24" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/containerDescription"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/rectangle_background"
-            android:backgroundTint="#F7F8F9"
-            android:padding="18dp">
+            android:layout_marginTop="15dp"
+            android:textColorHint="@color/gray"
+            app:helperText=""
+            app:helperTextTextColor="@android:color/holo_red_dark">
 
-            <EditText
-                android:layout_width="0dp"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtDescription"
+                android:layout_width="match_parent"
                 android:layout_height="110dp"
-                android:layout_weight="1"
-                android:background="@null"
-                android:fontFamily="@font/urbanist_semibold"
+                android:background="@drawable/rectangle_background"
+                android:backgroundTint="#F7F8F9"
+                android:fontFamily="@font/urbanist_medium"
                 android:gravity="top"
                 android:hint="Deskripsi Kronologi"
-                android:textColor="#6A707C"
-                android:textColorHint="#ccc"
-                android:textSize="14sp" />
+                android:inputType="text"
+                android:lines="1"
+                android:textSize="15sp" />
 
-        </LinearLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_marginTop="12dp"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:background="@drawable/rectangle_background"
             android:backgroundTint="#F7F8F9"
-            android:layout_height="wrap_content"
             android:paddingVertical="40dp">
 
             <ImageView
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 android:id="@+id/imageAttachFile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -189,18 +199,20 @@
                 android:height="56dp"
                 android:clickable="true"
                 android:contentDescription="Attach File"
-                android:src="@drawable/attach" />
+                android:src="@drawable/attach"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/urbanist_bold"
                 android:gravity="center"
+                android:text="Lampirkan Bukti (Opsional)"
                 android:textColor="#ccc"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:fontFamily="@font/urbanist_bold"
-                android:text="Lampirkan Bukti (Opsional)"
                 app:layout_constraintEnd_toEndOf="@id/imageAttachFile"
                 app:layout_constraintStart_toStartOf="@+id/imageAttachFile"
                 app:layout_constraintTop_toBottomOf="@id/imageAttachFile" />
@@ -209,7 +221,7 @@
 
 
         <Button
-            android:id="@+id/btnLogout"
+            android:id="@+id/btnSubmit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="37dp"
