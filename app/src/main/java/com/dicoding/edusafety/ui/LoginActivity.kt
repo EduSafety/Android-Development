@@ -3,12 +3,23 @@ package com.dicoding.edusafety.ui
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
+import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.dicoding.edusafety.R
+import com.dicoding.edusafety.data.pref.UserModel
 import com.dicoding.edusafety.databinding.ActivityLoginBinding
+import com.dicoding.edusafety.viewmodel.LoginActivityViewModel
+import com.dicoding.edusafety.viewmodel.LoginViewModel
+import com.dicoding.edusafety.viewmodel.LoginViewModelFactory
+import com.dicoding.edusafety.viewmodel.ViewModelFactory
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -23,7 +34,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityLoginBinding
+    private lateinit var binding: ActivityLoginBinding
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,17 +42,47 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.backButton.setOnClickListener{
-            startActivity(Intent(this,InitialPage::class.java))
+        binding.backButton.setOnClickListener {
+            startActivity(Intent(this, InitialPage::class.java))
         }
 
-        binding.loginBtn.setOnClickListener{
-//            MainActivity.isLogin = true
-            startActivity(Intent(this,MainActivity::class.java))
+        binding.loginBtn.setOnClickListener {
+            val factoryApi: LoginViewModelFactory = LoginViewModelFactory.getInstance()
+            val viewModelApi =
+                ViewModelProvider(this, factoryApi)[LoginActivityViewModel::class.java]
+
+            val factoryPref: ViewModelFactory = ViewModelFactory.getInstance(this)
+            val viewModel = ViewModelProvider(this, factoryPref)[LoginViewModel::class.java]
+
+            viewModelApi.isLoading.observe(this) {
+                showLoading(it)
+                Log.d("LOADING", "$it")
+            }
+
+            val email = binding.edtEmail.text.toString()
+            val password = binding.edtPassword.text.toString()
+
+
+            if (email.isNotBlank() && password.isNotBlank()) {
+                viewModelApi.login(email, password)
+                viewModelApi.validLogin.observe(this) {
+                    if (it != null) {
+                        validLogin(it)
+                        viewModelApi.resetRegisterResponse()
+                        viewModelApi.token.observe(this, Observer { token ->
+                            viewModel.saveSession(UserModel(email, token.toString(), true))
+                            startActivity(Intent(this, MainActivity::class.java))
+                            Log.d("TOKEN MASUK", "$token")
+                        })
+                    }
+                }
+            } else {
+//                showAlertDialog("PERINGATAN", "Mohon lengkapi data terlebih dahulu", "OK")
+            }
         }
 
-        binding.registerButton.setOnClickListener{
-            startActivity(Intent(this,RegisterActivity::class.java))
+        binding.registerButton.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
 
         // Configure Google Sign In
@@ -54,7 +95,7 @@ class LoginActivity : AppCompatActivity() {
         // Initialize Firebase Auth
         auth = Firebase.auth
 
-        binding.loginWithGoogle.setOnClickListener{
+        binding.loginWithGoogle.setOnClickListener {
             signIn()
         }
     }
@@ -68,7 +109,8 @@ class LoginActivity : AppCompatActivity() {
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
-            val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+            val task: Task<GoogleSignInAccount> =
+                GoogleSignIn.getSignedInAccountFromIntent(result.data)
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 val account: GoogleSignInAccount = task.getResult(ApiException::class.java)!!
@@ -99,7 +141,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun updateUI(currentUser: FirebaseUser?) {
-        if (currentUser != null){
+        if (currentUser != null) {
+            Log.d(TAG, "GAGAL")
             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
             finish()
         }
@@ -114,5 +157,49 @@ class LoginActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "LoginActivity"
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.GONE
+        }
+    }
+
+    private fun validLogin(isValid: Boolean) {
+        if (!isValid) {
+            Handler(Looper.getMainLooper()).post {
+                showAlertDialog("Oh no!", "Email atau Password salah !", "OK")
+            }
+            showLoading(false)
+            Log.d("GAGAL LOGIN", "Fail")
+        }
+    }
+
+//    private fun showAlertDialogLogin(title: String, message: String, buttonPos: String) {
+//        AlertDialog.Builder(this).apply {
+//            setTitle(title)
+//            setMessage(message)
+//            setPositiveButton(buttonPos) { _, _ ->
+//                val intent = Intent(context, MainActivity::class.java)
+//                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+//                startActivity(intent)
+//                finish()
+//            }
+//            create()
+//            show()
+//        }
+//    }
+
+    private fun showAlertDialog(title: String, message: String, buttonPos: String) {
+        AlertDialog.Builder(this).apply {
+            setTitle(title)
+            setMessage(message)
+            setPositiveButton(buttonPos) { _, _ ->
+            }
+            create()
+            show()
+        }
     }
 }
