@@ -3,15 +3,28 @@ package com.dicoding.edusafety.ui
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.util.Patterns
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
+import android.view.View
+
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.dicoding.edusafety.R
+import com.dicoding.edusafety.data.pref.UserModel
 import com.dicoding.edusafety.databinding.ActivityLoginBinding
+import com.dicoding.edusafety.viewmodel.LoginActivityViewModel
+import com.dicoding.edusafety.viewmodel.LoginViewModel
+import com.dicoding.edusafety.viewmodel.LoginViewModelFactory
+import com.dicoding.edusafety.viewmodel.ViewModelFactory
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -43,14 +56,40 @@ class LoginActivity : AppCompatActivity() {
         binding.loginBtn.setOnClickListener {
             if (areAllFieldsFilled()) {
                 // All fields are filled, navigate to MainActivity
-                startActivity(Intent(this, MainActivity::class.java))
-                finishAffinity()
+            val factoryApi: LoginViewModelFactory = LoginViewModelFactory.getInstance()
+            val viewModelApi =
+                ViewModelProvider(this, factoryApi)[LoginActivityViewModel::class.java]
+
+            val factoryPref: ViewModelFactory = ViewModelFactory.getInstance(this)
+            val viewModel = ViewModelProvider(this, factoryPref)[LoginViewModel::class.java]
+
+            viewModelApi.isLoading.observe(this) {
+                showLoading(it)
+                Log.d("LOADING", "$it")
+            }
+
+            val email = binding.edtEmail.text.toString()
+            val password = binding.edtPassword.text.toString()
+
+
+            viewModelApi.login(email, password)
+            viewModelApi.validLogin.observe(this) {
+                   if (it != null) {
+                        validLogin(it)
+                        viewModelApi.resetRegisterResponse()
+                        viewModelApi.token.observe(this, Observer { token ->
+                            viewModel.saveSession(UserModel(email, token.toString(), true))
+                            startActivity(Intent(this, MainActivity::class.java))
+                            Log.d("TOKEN MASUK", "$token")
+                       })
+                   }
+               }
             } else {
                 // Display error messages for empty fields
                 checkAndSetErrorForEmptyField(binding.emailEditText, binding.emailContainer, "Email is required")
                 checkAndSetErrorForEmptyField(binding.passwordEditText, binding.passwordContainer, "Password is required")
             }
-
+          }
         }
 
         binding.registerButton.setOnClickListener {
@@ -201,5 +240,49 @@ class LoginActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "LoginActivity"
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.GONE
+        }
+    }
+
+    private fun validLogin(isValid: Boolean) {
+        if (!isValid) {
+            Handler(Looper.getMainLooper()).post {
+                showAlertDialog("Oh no!", "Email atau Password salah !", "OK")
+            }
+            showLoading(false)
+            Log.d("GAGAL LOGIN", "Fail")
+        }
+    }
+
+//    private fun showAlertDialogLogin(title: String, message: String, buttonPos: String) {
+//        AlertDialog.Builder(this).apply {
+//            setTitle(title)
+//            setMessage(message)
+//            setPositiveButton(buttonPos) { _, _ ->
+//                val intent = Intent(context, MainActivity::class.java)
+//                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+//                startActivity(intent)
+//                finish()
+//            }
+//            create()
+//            show()
+//        }
+//    }
+
+    private fun showAlertDialog(title: String, message: String, buttonPos: String) {
+        AlertDialog.Builder(this).apply {
+            setTitle(title)
+            setMessage(message)
+            setPositiveButton(buttonPos) { _, _ ->
+            }
+            create()
+            show()
+        }
     }
 }

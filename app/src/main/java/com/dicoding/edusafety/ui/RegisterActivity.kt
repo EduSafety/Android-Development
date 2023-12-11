@@ -3,16 +3,37 @@ package com.dicoding.edusafety.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
+
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
+import android.view.View
+import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
+
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.dicoding.edusafety.databinding.ActivityRegisterBinding
+
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
+import com.dicoding.edusafety.viewmodel.LoginViewModelFactory
+import com.dicoding.edusafety.viewmodel.RegisterViewModel
+
+
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
+
+
+    private val viewModel by viewModels<RegisterViewModel> {
+        LoginViewModelFactory.getInstance()
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,12 +43,26 @@ class RegisterActivity : AppCompatActivity() {
         binding.backButton.setOnClickListener {
             onBackPressed()
         }
-
+        
+        val name = binding.edtFullname.text.toString()
+        val email = binding.edtEmail.text.toString()
+        val password = binding.edtPassword.text.toString()
+        val confPassword = binding.edtConfirmPassword.text
+        val phone = binding.edtPhoneNumber.text
+      
         binding.btnRegister.setOnClickListener {
             if (areAllFieldsFilled()) {
                 // All fields are filled, navigate to MainActivity
-                startActivity(Intent(this, MainActivity::class.java))
-                finishAffinity()
+                viewModel.register(name, email, phone, password)
+                viewModel.isLoading.observe(this) {
+                    showLoading(it)
+                }
+                viewModel.validRegist.observe(this, Observer {
+                    if (it != null) {
+                        validRegister(it)
+                        viewModel.resetRegisterResponse()
+                    }
+                })
             } else {
                 // Display error messages for empty fields
                 checkAndSetErrorForEmptyField(binding.edtFullname, binding.edtFullnameContainer, "Fullname is required")
@@ -130,6 +165,63 @@ class RegisterActivity : AppCompatActivity() {
     ) {
         if (editText.text?.isBlank() == true) {
             container.helperText = errorMessage
+            startActivity(Intent(this, InitialPage::class.java))
+        }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.GONE
+        }
+    }
+
+    private fun validRegister(isValid: Boolean) {
+        val email = binding.edtEmail.text.toString()
+        if (isValid) {
+            Handler(Looper.getMainLooper()).post {
+                showAlertDialogLogin(
+                    "Yeay !",
+                    "Akun dengan $email sudah dibuat. Yuk, curhat",
+                    "LANJUT"
+                )
+            }
+
+        } else {
+            Handler(Looper.getMainLooper()).post {
+                showAlertDialog(
+                    "Oh no!",
+                    "Akun dengan $email sudah dipakai orang lain nih. Yuk, buat yang berbeda sedikit",
+                    "BUAT ULANG"
+                )
+            }
+            Log.d("AKUN GAGAL DIBUAT", "Registrasi Gagal")
+        }
+    }
+
+    private fun showAlertDialogLogin(title: String, message: String, buttonPos: String) {
+        AlertDialog.Builder(this).apply {
+            setTitle(title)
+            setMessage(message)
+            setPositiveButton(buttonPos) { _, _ ->
+                val login = Intent(this@RegisterActivity, LoginActivity::class.java)
+                startActivity(login)
+                finish()
+            }
+            create()
+            show()
+        }
+    }
+
+    private fun showAlertDialog(title: String, message: String, buttonPos: String) {
+        AlertDialog.Builder(this).apply {
+            setTitle(title)
+            setMessage(message)
+            setPositiveButton(buttonPos) { _, _ ->
+            }
+            create()
+            show()
         }
     }
 }
