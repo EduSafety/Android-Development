@@ -3,15 +3,13 @@ package com.dicoding.edusafety.ui
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Patterns
 import android.os.Handler
 import android.os.Looper
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import android.util.Patterns
 import android.view.View
-
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
@@ -80,6 +78,7 @@ class LoginActivity : AppCompatActivity() {
                         viewModelApi.token.observe(this, Observer { token ->
                             viewModel.saveSession(UserModel(email, token.toString(), true))
                             startActivity(Intent(this, MainActivity::class.java))
+                            finish()
                             Log.d("TOKEN MASUK", "$token")
                        })
                    }
@@ -157,8 +156,8 @@ class LoginActivity : AppCompatActivity() {
 
     private fun updateUI(currentUser: FirebaseUser?) {
         if (currentUser != null) {
-            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-            finish()
+            startActivity(Intent(this, MainActivity::class.java))
+            finishAffinity()
         }
     }
 
@@ -259,21 +258,6 @@ class LoginActivity : AppCompatActivity() {
             Log.d("GAGAL LOGIN", "Fail")
         }
     }
-
-//    private fun showAlertDialogLogin(title: String, message: String, buttonPos: String) {
-//        AlertDialog.Builder(this).apply {
-//            setTitle(title)
-//            setMessage(message)
-//            setPositiveButton(buttonPos) { _, _ ->
-//                val intent = Intent(context, MainActivity::class.java)
-//                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-//                startActivity(intent)
-//                finish()
-//            }
-//            create()
-//            show()
-//        }
-//    }
 
     private fun showAlertDialog(title: String, message: String, buttonPos: String) {
         AlertDialog.Builder(this).apply {

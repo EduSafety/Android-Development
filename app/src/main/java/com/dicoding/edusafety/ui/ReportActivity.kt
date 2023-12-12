@@ -1,14 +1,12 @@
 package com.dicoding.edusafety.ui
 
 import android.app.DatePickerDialog
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.edusafety.R
 import com.dicoding.edusafety.databinding.ActivityReportBinding
 import com.google.android.material.textfield.TextInputEditText

@@ -3,6 +3,7 @@ package com.dicoding.edusafety.ui
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.edusafety.databinding.ActivityInitialPageBinding
@@ -32,8 +33,24 @@ class InitialPage : AppCompatActivity() {
         binding.registerButton.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
+
         auth = Firebase.auth
-        validate()
+        val currentUser = auth.currentUser
+        showLoading(true)
+        viewModel.getSession().observe(this) { user ->
+            if (user.isLogin) {
+                showLoading(true)
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            } else {
+                showLoading(false)
+                if(currentUser != null) {
+                    showLoading(true)
+                    Log.d("AuthGoogle", "TRUE")
+                    updateUI(currentUser)
+                }
+            }
+        }
     }
 
     private fun updateUI(currentUser: FirebaseUser?) {
@@ -43,36 +60,11 @@ class InitialPage : AppCompatActivity() {
         }
     }
 
-    private fun validate(){
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            Log.d("AuthGoogle", "TRUE")
-            updateUI(currentUser)
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
         } else {
-            Log.d("AuthGoogle", "FALSE")
-            viewModel.getSession().observe(this) { user ->
-                if (user.isLogin) {
-                    startActivity(Intent(this@InitialPage, MainActivity::class.java))
-                    finish()
-                }
-            }
+            binding.progressBar.visibility = View.GONE
         }
     }
-//    override fun onStart() {
-//        super.onStart()
-//        // Check if user is signed in (non-null) and update UI accordingly.
-//        val currentUser = auth.currentUser
-//        if (currentUser != null) {
-//            Log.d("AuthGoogle", "TRUE")
-//            updateUI(currentUser)
-//        } else {
-//            Log.d("AuthGoogle", "FALSE")
-//            viewModel.getSession().observe(this) { user ->
-//                if (user.isLogin) {
-//                    startActivity(Intent(this@InitialPage, MainActivity::class.java))
-//                    finish()
-//                }
-//            }
-//        }
-//    }
 }
