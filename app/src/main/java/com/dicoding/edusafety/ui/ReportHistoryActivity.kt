@@ -1,10 +1,9 @@
 package com.dicoding.edusafety.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.edusafety.R
 import com.dicoding.edusafety.data.model.MyItem
 import com.dicoding.edusafety.databinding.ActivityReportHistoryBinding

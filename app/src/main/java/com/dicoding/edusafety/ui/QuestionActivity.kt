@@ -1,7 +1,7 @@
 package com.dicoding.edusafety.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.edusafety.R
 
 class QuestionActivity : AppCompatActivity() {

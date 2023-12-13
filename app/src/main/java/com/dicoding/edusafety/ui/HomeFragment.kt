@@ -8,12 +8,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.dicoding.edusafety.R
 import com.dicoding.edusafety.data.model.MyItem
 import com.dicoding.edusafety.databinding.FragmentHomeBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class HomeFragment : Fragment() {
-    private lateinit var binding : FragmentHomeBinding
+    private lateinit var binding: FragmentHomeBinding
+    private lateinit var auth: FirebaseAuth
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,8 +35,14 @@ class HomeFragment : Fragment() {
         setReportAdapter()
         setRecentAdapter()
 
-        binding.recentReportContainer.setOnClickListener{
-            startActivity(Intent(requireContext(),ReportHistoryActivity::class.java))
+        binding.recentReportContainer.setOnClickListener {
+            startActivity(Intent(requireContext(), ReportHistoryActivity::class.java))
+        }
+
+        auth = Firebase.auth
+        val currentUser = auth.currentUser
+        if(currentUser != null){
+            updateUI(currentUser)
         }
     }
 
@@ -62,5 +74,17 @@ class HomeFragment : Fragment() {
         recyclerView.adapter = adapter
     }
 
+    private fun updateUI(currentUser: FirebaseUser?) {
+        if (currentUser != null) {
+            val uid = currentUser.uid
+            val photoUrl = currentUser.photoUrl
+            val displayName = currentUser.displayName
+
+            binding.nameProfile.text = displayName
+            Glide.with(this)
+                .load(photoUrl)
+                .into(binding.profilePhoto)
+        }
+    }
 
 }

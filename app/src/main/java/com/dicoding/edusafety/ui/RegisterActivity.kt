@@ -2,27 +2,22 @@ package com.dicoding.edusafety.ui
 
 import android.content.Intent
 import android.os.Bundle
-
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Patterns
-
 import android.os.Handler
 import android.os.Looper
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import android.util.Patterns
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
-
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.dicoding.edusafety.databinding.ActivityRegisterBinding
-
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
-
 import com.dicoding.edusafety.viewmodel.LoginViewModelFactory
 import com.dicoding.edusafety.viewmodel.RegisterViewModel
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -43,15 +38,16 @@ class RegisterActivity : AppCompatActivity() {
             onBackPressed()
         }
         
-        val name = binding.edtFullname.text.toString()
-        val email = binding.edtEmail.text.toString()
-        val password = binding.edtPassword.text.toString()
-        val confPassword = binding.edtConfirmPassword.text
-        val phone = binding.edtPhoneNumber.text
+
       
         binding.btnRegister.setOnClickListener {
             if (areAllFieldsFilled()) {
+                val name = binding.edtFullname.text.toString()
+                val email = binding.edtEmail.text.toString()
+                val password = binding.edtPassword.text.toString()
+                val phone = binding.edtPhoneNumber.text
                 // All fields are filled, navigate to MainActivity
+                Log.d("INPUT","$name, $email, $phone, $password")
                 viewModel.register(name, email, phone, password)
                 viewModel.isLoading.observe(this) {
                     showLoading(it)
@@ -180,11 +176,13 @@ class RegisterActivity : AppCompatActivity() {
         val email = binding.edtEmail.text.toString()
         if (isValid) {
             Handler(Looper.getMainLooper()).post {
-                showAlertDialogLogin(
-                    "Yeay !",
-                    "Akun dengan $email sudah dibuat. Yuk, curhat",
-                    "LANJUT"
-                )
+//                showAlertDialogLogin(
+//                    "Yeay !",
+//                    "Akun dengan $email sudah dibuat. Yuk, curhat",
+//                    "LANJUT"
+//                )
+                startActivity(Intent(this, RegisterSuccessActivity::class.java))
+                finish()
             }
 
         } else {
