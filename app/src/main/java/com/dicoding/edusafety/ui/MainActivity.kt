@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
         binding.fab.setOnClickListener{
-            startActivity(Intent(this,ReportActivity::class.java))
+            startActivity(Intent(this,QuestionActivity::class.java))
         }
         auth = Firebase.auth
         validate()

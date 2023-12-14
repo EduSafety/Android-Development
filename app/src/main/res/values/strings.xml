@@ -3,9 +3,60 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="default_web_client_id">108467967394-trc6rpogpgqf8bibvqoo3b9uhts11n1a.apps.googleusercontent.com</string>
+    <string name="question1">Seberapa sering Anda mengalami kekerasan yang membuat Anda merasa terganggu atau merasa terintimidasi (perlakuan yang menyebabkan kurang kepercayaan diri atau takut) ?</string>
+    <string name="question2">Kapan terakhir kali Anda mengalami kekerasan ?</string>
+    <string name="question3">Apakah anda bisa mengatasi masalah setelah mendapatkan pengarahan dari orang lain ?</string>
+    <string name="question4">Apa ada dampak dari kekerasan yang Anda alami ?</string>
+    <string name="question5">Apakah dampak kekerasan yang Anda alami mempengaruhi aktivitas dan kehadiran di Kampus ?</string>
+    <string name="question6">Apa dampak dari kekerasan yang terjadi pada Anda ?</string>
+    <string name="question7">Apakah ada orang lain yang tahu mengenai kekerasan yang Anda alami ?</string>
+    <string name="question8">Apa yang Anda lakukan pada saat tindakan kekerasan terjadi ?</string>
+    <string name="question9">Apakah Anda merasa aman berada di sekitar Kampus setiap harinya ?</string>
+    <string name="question10">Apakah sudah melaporkan kekerasan yang Anda alami ke pihak Kampus ?</string>
+    <string name="question11">Apakah ada tindakan atau langkah-langkah yang telah diambil oleh pihak Kampus untuk menangani perbuatan kekerasan?</string>
+    <string name="question12">Apakah anda diancam atau dipaksa untuk melakukan sesuatu yang tidak anda inginkan?</string>
+
     <string-array name="report_category">
         <item>Verbal Abuse</item>
         <item>Physical Assault</item>
         <item>Bulliying</item>
     </string-array>
+
+    <string-array name="question_1">
+        <item>Sering</item>
+        <item>Jarang</item>
+        <item>Tidak Pernah</item>
+    </string-array>
+
+    <string-array name="question_2">
+        <item>Beberapa Hari Terakhir</item>
+        <item>Beberapa Minggu Terakhir</item>
+        <item>Beberapa Bulan Terakhir</item>
+    </string-array>
+
+    <string-array name="often_question">
+        <item>Ya</item>
+        <item>Mungkin</item>
+        <item>Tidak</item>
+    </string-array>
+
+    <string-array name="question_6">
+        <item>Melukai Diri Sendiri</item>
+        <item>Trauma</item>
+        <item>Dendam</item>
+        <item>Takut</item>
+        <item>Tidak Ada</item>
+    </string-array>
+
+    <string-array name="question_8">
+        <item>Membiarkan</item>
+        <item>Membalas</item>
+        <item>Melapor</item>
+    </string-array>
+
+    <string-array name="question_10">
+        <item>Sudah</item>
+        <item>Belum</item>
+    </string-array>
+
 </resources>
