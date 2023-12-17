@@ -7,14 +7,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.edusafety.R
+import com.dicoding.edusafety.data.model.LeaderBoardItem
 import com.dicoding.edusafety.data.model.MyItem
 
-class MainReportAdapter(private val itemList: List<MyItem>) :
-    RecyclerView.Adapter<MainReportAdapter.ViewHolder>() {
+class LeaderboardAdapter(private val itemList: List<LeaderBoardItem>) :
+    RecyclerView.Adapter<LeaderboardAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.list_item_leaderboard, parent, false)
         return ViewHolder(view)
     }
 
@@ -22,7 +23,9 @@ class MainReportAdapter(private val itemList: List<MyItem>) :
         val item = itemList[position]
 
         holder.imageView.setImageResource(item.imageResource)
-        holder.textTitle.text = item.title
+        holder.univName.text = item.univName
+        holder.reportNumber.text = item.reportNumber
+        holder.rankNumber.text = item.rankNumber
     }
 
     override fun getItemCount(): Int {
@@ -31,6 +34,8 @@ class MainReportAdapter(private val itemList: List<MyItem>) :
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
-        val textTitle: TextView = itemView.findViewById(R.id.textTitle)
+        val univName: TextView = itemView.findViewById(R.id.univName)
+        val reportNumber: TextView = itemView.findViewById(R.id.reportNumber)
+        val rankNumber: TextView = itemView.findViewById(R.id.rankNumber)
     }
 }

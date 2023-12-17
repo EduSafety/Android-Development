@@ -15,11 +15,26 @@
     <string name="question10">Apakah sudah melaporkan kekerasan yang Anda alami ke pihak Kampus ?</string>
     <string name="question11">Apakah ada tindakan atau langkah-langkah yang telah diambil oleh pihak Kampus untuk menangani perbuatan kekerasan?</string>
     <string name="question12">Apakah anda diancam atau dipaksa untuk melakukan sesuatu yang tidak anda inginkan?</string>
+    <string name="kategori">Kategori</string>
+    <string name="verbal_abuse">Verbal Abuse</string>
+    <string name="nama_korban">Nama Korban</string>
+    <string name="nama">Dave Leonard</string>
+    <string name="nama_pelaku">Nama Pelaku</string>
+    <string name="universitas">Universitas</string>
+    <string name="tanngal_kejadian">Tanngal Kejadian</string>
+    <string name="kronologi">Kronologi</string>
+    <string name="bukti">Bukti</string>
+    <string name="submit">Submit</string>
+    <string name="selanjutnya">Selanjutnya</string>
+    <string name="worst_leaderboard">Worst Leaderboard</string>
+    <string name="konsultasi">Konsultasi</string>
+    <string name="coming_soon">Will be available soon...</string>
+    <string name="save">Save</string>
 
     <string-array name="report_category">
         <item>Verbal Abuse</item>
         <item>Physical Assault</item>
-        <item>Bulliying</item>
+        <item>Social</item>
     </string-array>
 
     <string-array name="question_1">

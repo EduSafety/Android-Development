@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.DetailActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="185dp"
+                android:background="@color/primary"
+                android:orientation="horizontal"
+                android:padding="22dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageButton
+                        android:id="@+id/backButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/rectangle_background"
+                        android:padding="5dp"
+                        android:src="@drawable/baseline_keyboard_arrow_left_24"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/urbanist_bold"
+                        android:gravity="center_horizontal"
+                        android:text="Detail Pengaduan"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@id/backButton"
+                        app:layout_constraintStart_toEndOf="@id/backButton"
+                        app:layout_constraintTop_toTopOf="@id/backButton" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/secondLayout"
+                android:layout_width="315dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-50dp"
+                android:background="@drawable/rectangle_background"
+                android:elevation="20dp"
+                android:orientation="horizontal"
+                android:padding="22dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/urbanist_bold"
+                    android:text="Tingkat Kekerasan"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle_background"
+                    android:backgroundTint="#E91F1F"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="10dp"
+                    android:text="Tinggi"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="65dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/title_background"
+                android:fontFamily="@font/urbanist_bold"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Kategori"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvKategori"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:drawableStart="@drawable/baseline_shield_24"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/urbanist_bold"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="22dp"
+                android:text="Verbal Abuse"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/title_background"
+                android:fontFamily="@font/urbanist_bold"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/nama_korban"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvNamaKorban"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:drawableStart="@drawable/baseline_person_24_primary"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/urbanist_bold"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="22dp"
+                android:text="@string/nama"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/title_background_danger"
+                android:fontFamily="@font/urbanist_bold"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/nama_pelaku"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/namaPelaku"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:drawableStart="@drawable/baseline_person_24_danger"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/urbanist_bold"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="22dp"
+                android:text="@string/nama"
+                android:textColor="#CA2127"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/title_background"
+                android:fontFamily="@font/urbanist_bold"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/universitas"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvUniversitas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:drawableStart="@drawable/mdi_university"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/urbanist_bold"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="22dp"
+                android:text="Universitas Indonesia"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/title_background"
+                android:fontFamily="@font/urbanist_bold"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/tanngal_kejadian"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvTanggalKejadian"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:drawableStart="@drawable/baseline_calendar_month_24_primary"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/urbanist_bold"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="22dp"
+                android:text="31 Des 2023"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/title_background"
+                android:fontFamily="@font/urbanist_bold"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/kronologi"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvKronologi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:fontFamily="@font/urbanist_bold"
+                android:gravity="start"
+                android:paddingHorizontal="22dp"
+                android:text="lorem"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/title_background"
+                android:fontFamily="@font/urbanist_bold"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/bukti"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/bukti"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="14dp"
+                android:paddingHorizontal="22dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/baseline_image_24"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingHorizontal="22dp"
-    android:paddingBottom="22dp">
+    android:paddingBottom="?attr/actionBarSize">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -40,7 +40,6 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
-        android:id="@+id/edtUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="38dp"
@@ -49,12 +48,13 @@
         android:padding="18dp">
 
         <EditText
+            android:id="@+id/edtUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
             android:fontFamily="@font/urbanist_semibold"
-            android:text="Jawir"
+            android:text="Dave Leonard"
             android:textColor="#6A707C"
             android:textSize="14sp" />
 
@@ -67,7 +67,6 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/edtEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -76,6 +75,7 @@
         android:padding="18dp">
 
         <EditText
+            android:id="@+id/edtEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -116,17 +116,52 @@
             android:src="@drawable/baseline_edit_24" />
     </LinearLayout>
 
-    <Space
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="98dp" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/rectangle_background"
+        android:backgroundTint="#F7F8F9"
+        android:padding="18dp">
 
+        <EditText
+            android:id="@+id/campusName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:fontFamily="@font/urbanist_semibold"
+            android:text="@string/universitas"
+            android:textColor="#6A707C"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_edit_24" />
+    </LinearLayout>
+    
     <Button
+        android:id="@+id/btnSave"
+        android:enabled="false"
+        android:textAllCaps="false"
+        android:background="@drawable/rectangle_background"
+        android:backgroundTint="@color/gray"
+        android:layout_marginTop="10dp"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        android:layout_gravity="end"/>
+
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="37dp"
         android:height="56dp"
-        android:background="@drawable/rectangle_background"
+        android:layout_gravity="bottom"
+        android:background="@drawable/rectangle_background_grey"
         android:fontFamily="@font/urbanist_semibold"
         android:text="Logout"
         android:textAllCaps="false"

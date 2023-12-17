@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_konsultasi"
+    android:layout_gravity="center_horizontal"
+    tools:context=".ui.ConsultationFragment">
+
+    <TextView
+        android:layout_marginTop="50dp"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/konsultasi"
+        android:textColor="@color/primary"
+        android:textSize="30sp"
+        android:fontFamily="@font/urbanist_bold"/>
+
+    <TextView
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/coming_soon"
+        android:textColor="@color/danger"
+        android:textSize="20sp"
+        android:fontFamily="@font/urbanist_bold"/>
+
+</LinearLayout>

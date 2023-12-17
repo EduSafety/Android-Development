@@ -47,7 +47,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setReportAdapter() {
-        val recyclerView: RecyclerView = requireView().findViewById(R.id.rc_category)
+        val recyclerView: RecyclerView = requireView().findViewById(R.id.rv_category)
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
 
         val itemList = listOf(

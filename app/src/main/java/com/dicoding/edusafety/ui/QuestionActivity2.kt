@@ -5,8 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.edusafety.R
+import com.dicoding.edusafety.data.model.QuestionItem
 import com.dicoding.edusafety.databinding.ActivityQuestion2Binding
+import com.dicoding.mycustomview.QuestionAdapter
 
 
 class QuestionActivity2 : AppCompatActivity() {
@@ -17,34 +21,54 @@ class QuestionActivity2 : AppCompatActivity() {
         binding = ActivityQuestion2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupDropdowns()
-        binding.backButton.setOnClickListener{
+        binding.backButton.setOnClickListener {
             onBackPressed()
-            finish()
         }
 
-        binding.btnNext.setOnClickListener{
-            startActivity(Intent(this, ReportActivity::class.java))
+
+        binding.btnSubmit.setOnClickListener {
+            if (isAllQuestionsAnswered()) {
+                startActivity(Intent(this, DetailActivity::class.java))
+            } else {
+                Toast.makeText(this, "Mohon jawab semua pertanyaan", Toast.LENGTH_SHORT).show()
+            }
         }
+
+        setupRecyclerView()
     }
 
-    private fun setupDropdowns() {
-        setupDropdown(binding.question1, R.array.question_1)
-        setupDropdown(binding.question2, R.array.question_2)
-        setupDropdown(binding.question3, R.array.often_question)
-        setupDropdown(binding.question4, R.array.often_question)
-        setupDropdown(binding.question5, R.array.often_question)
-        setupDropdown(binding.question6, R.array.question_6)
-        setupDropdown(binding.question7, R.array.often_question)
-        setupDropdown(binding.question8, R.array.question_8)
-        setupDropdown(binding.question9, R.array.often_question)
-        setupDropdown(binding.question10, R.array.question_10)
-        setupDropdown(binding.question11, R.array.often_question)
-        setupDropdown(binding.question12, R.array.often_question)
+    private fun setupRecyclerView() {
+        val recyclerView = binding.recylerView
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        val items = createQuestionItems()
+        val adapter = QuestionAdapter(items)
+        recyclerView.adapter = adapter
     }
 
-    private fun setupDropdown(autoCompleteTextView: AutoCompleteTextView, arrayId: Int) {
-        val adapter = ArrayAdapter(this, R.layout.dropdown_item, resources.getStringArray(arrayId))
-        autoCompleteTextView.setAdapter(adapter)
+    private fun createQuestionItems(): List<QuestionItem> {
+        // pertanyaan dan jawaban(autocomplete)
+        return listOf(
+            QuestionItem("Pernah ngeroyok orang ga?", resources.getStringArray(R.array.question_1)),
+            QuestionItem("kapan tuh", resources.getStringArray(R.array.question_2)),
+            QuestionItem("kenapa ngeroyok orang", resources.getStringArray(R.array.question_6)),
+        )
     }
+
+    private fun isAllQuestionsAnswered(): Boolean {
+        val adapter = (binding.recylerView.adapter as? QuestionAdapter)
+        adapter?.let {
+            for (i in 0 until it.itemCount) {
+                val viewHolder = binding.recylerView.findViewHolderForAdapterPosition(i) as? QuestionAdapter.ViewHolder
+                val autoCompleteTextView = viewHolder?.autoCompleteTextViewJawaban
+
+                // Check if AutoCompleteTextView is empty
+                if (autoCompleteTextView?.text.isNullOrBlank()) {
+                    return false
+                }
+            }
+        }
+        return true
+    }
+
+
 }

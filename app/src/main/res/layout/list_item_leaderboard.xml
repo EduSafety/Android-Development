@@ -1,0 +1,58 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:backgroundTint="#E8ECF4"
+    android:background="@drawable/rectangle_background_grey"
+    android:layout_gravity="center"
+    android:layout_marginBottom="10dp">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:clipToOutline="true"
+        android:src="@drawable/indo_univ"
+        android:outlineProvider="background"
+        android:backgroundTint="#E8ECF4"
+        android:background="@drawable/circle_background" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginStart="8dp">
+
+        <TextView
+            android:id="@+id/univName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/urbanist_bold"
+            android:text="Universitas Indonesia"
+            android:textColor="@color/black"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/reportNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pengaduan : 20"
+            android:textColor="@color/black"
+            android:fontFamily="@font/urbanist_medium"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/rankNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rank 1"
+        android:textColor="@color/black"
+        android:fontFamily="@font/urbanist_medium"
+        android:textSize="12sp"/>
+
+</LinearLayout>
