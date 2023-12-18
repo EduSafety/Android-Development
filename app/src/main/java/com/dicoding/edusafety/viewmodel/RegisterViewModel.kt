@@ -37,7 +37,10 @@ class RegisterViewModel(private val userRegistLoginRepository: UserRegistLoginRe
                     }
                 }
             } catch (e: Exception) {
-                Log.d("Error Register", e.toString())
+                withContext(Dispatchers.Main) {
+                    _validRegist.value = false
+                    Log.d("Error Register", e.toString())
+                }
             }
         }
     }

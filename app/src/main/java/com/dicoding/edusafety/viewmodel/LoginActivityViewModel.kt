@@ -42,8 +42,10 @@ class LoginActivityViewModel(private val userRegistLoginRepository: UserRegistLo
                     }
                 }
             } catch (e: Exception) {
-                _validLogin.value = false
-                Log.d("ERROR VIEWMODEL API", e.toString())
+                withContext(Dispatchers.Main) {
+                    _validLogin.value = false
+                    Log.d("ERROR VIEWMODEL API", e.toString())
+                }
             }
         }
     }
