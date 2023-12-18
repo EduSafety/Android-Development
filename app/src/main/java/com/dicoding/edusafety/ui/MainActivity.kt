@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this,InitialReport::class.java))
         }
         auth = Firebase.auth
-        validate()
+//        validate()
     }
 
     private fun replaceFragment(fragment: Fragment) {

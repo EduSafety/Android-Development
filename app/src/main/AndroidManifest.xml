@@ -16,41 +16,53 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.CreateNewPassword"
+            android:exported="false"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".ui.ForgotPassword"
+            android:exported="false"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".ui.Otp"
+            android:exported="false"
+            android:screenOrientation="locked" />
+        <activity
             android:name=".ui.DetailActivity"
-            android:screenOrientation="locked"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.QuestionActivity2"
-            android:screenOrientation="locked"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.InitialReport"
-            android:screenOrientation="locked"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.ReportHistoryActivity"
-            android:screenOrientation="locked"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.ReportActivity"
-            android:screenOrientation="locked"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.RegisterSuccessActivity"
-            android:screenOrientation="locked"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.RegisterActivity"
-            android:screenOrientation="locked"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.LoginActivity"
-            android:screenOrientation="locked"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="locked" />
         <activity
-            android:name=".ui.InitialPage"
-            android:screenOrientation="locked"
-            android:exported="true">
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:screenOrientation="locked">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -58,9 +70,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.MainActivity"
-            android:screenOrientation="locked"
-            android:exported="false" />
+            android:name=".ui.InitialPage"
+            android:exported="false"
+            android:screenOrientation="locked" />
     </application>
 
 </manifest>

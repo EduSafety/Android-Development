@@ -122,7 +122,7 @@ class RegisterActivity : AppCompatActivity() {
         if (!passwordText.matches(".*[a-z].*".toRegex())) {
             return "Must Contain 1 Lower-case Character"
         }
-        if (!passwordText.matches(".*[@#\$%^&+=].*".toRegex())) {
+        if (!passwordText.matches(".*[@#\$%^&+=!].*".toRegex())) {
             return "Must Contain 1 Special Character (@#\$%^&+=)"
         }
         return null

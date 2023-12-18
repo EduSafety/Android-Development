@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">eduSafety</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="default_web_client_id">108467967394-trc6rpogpgqf8bibvqoo3b9uhts11n1a.apps.googleusercontent.com</string>
     <string name="question1">Seberapa sering Anda mengalami kekerasan yang membuat Anda merasa terganggu atau merasa terintimidasi (perlakuan yang menyebabkan kurang kepercayaan diri atau takut) ?</string>
     <string name="question2">Kapan terakhir kali Anda mengalami kekerasan ?</string>
@@ -30,6 +29,14 @@
     <string name="konsultasi">Konsultasi</string>
     <string name="coming_soon">Will be available soon...</string>
     <string name="save">Save</string>
+    <string name="social">Social</string>
+    <string name="verbal">Verbal</string>
+    <string name="physical">Physical</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="description_forgot_password">Don\'t worry! It occurs. Please enter the email address linked with your account.</string>
+    <string name="send_code">Send Code</string>
+    <string name="create_new_password">Create new password</string>
+    <string name="create_new_password_desc">Your new password must be unique from those previously used.</string>
 
     <string-array name="report_category">
         <item>Verbal Abuse</item>
