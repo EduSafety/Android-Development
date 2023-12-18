@@ -28,21 +28,15 @@ class ReportHistoryActivity : AppCompatActivity() {
         binding.rvHistory.layoutManager = LinearLayoutManager(this)
 
         val itemList = listOf(
-            MyItem(R.drawable.foto_saya_dicoding, "Jawir", "Verbal Abuse"),
-            MyItem(R.drawable.foto_saya_dicoding, "Mas Jawir", "Physical Assault"),
-            MyItem(R.drawable.foto_saya_dicoding, "Dave Leonard", "Bullying"),
-            MyItem(R.drawable.foto_saya_dicoding, "Jawir", "Verbal Abuse"),
-            MyItem(R.drawable.foto_saya_dicoding, "Mas Jawir", "Physical Assault"),
-            MyItem(R.drawable.foto_saya_dicoding, "Dave Leonard", "Bullying"),
-            MyItem(R.drawable.foto_saya_dicoding, "Jawir", "Verbal Abuse"),
-            MyItem(R.drawable.foto_saya_dicoding, "Mas Jawir", "Physical Assault"),
-            MyItem(R.drawable.foto_saya_dicoding, "Dave Leonard", "Bullying"),
-            MyItem(R.drawable.foto_saya_dicoding, "Jawir", "Verbal Abuse"),
-            MyItem(R.drawable.foto_saya_dicoding, "Mas Jawir", "Physical Assault"),
-            MyItem(R.drawable.foto_saya_dicoding, "Dave Leonard", "Bullying"),
-            MyItem(R.drawable.foto_saya_dicoding, "Jawir", "Verbal Abuse"),
-            MyItem(R.drawable.foto_saya_dicoding, "Mas Jawir", "Physical Assault"),
-            MyItem(R.drawable.foto_saya_dicoding, "Dave Leonard", "Bullying"),
+            MyItem(R.drawable.avatar, "Dave Leonard", "Verbal Abuse"),
+            MyItem(R.drawable.avatar, "Dave Leonard", "Verbal Abuse"),
+            MyItem(R.drawable.avatar, "Dave Leonard", "Verbal Abuse"),
+            MyItem(R.drawable.avatar, "Dave Leonard", "Verbal Abuse"),
+            MyItem(R.drawable.avatar, "Dave Leonard", "Verbal Abuse"),
+            MyItem(R.drawable.avatar, "Dave Leonard", "Verbal Abuse"),
+            MyItem(R.drawable.avatar, "Dave Leonard", "Verbal Abuse"),
+            MyItem(R.drawable.avatar, "Dave Leonard", "Verbal Abuse"),
+
         )
 
         val adapter = MainRecentAdapter(itemList)

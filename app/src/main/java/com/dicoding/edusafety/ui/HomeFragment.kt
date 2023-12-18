@@ -65,9 +65,9 @@ class HomeFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
 
         val itemList = listOf(
-            MyItem(R.drawable.foto_saya_dicoding, "Dave Leonard", "Verbal Abuse"),
-            MyItem(R.drawable.foto_saya_dicoding, "Dave Leonard", "Physical Assault"),
-            MyItem(R.drawable.foto_saya_dicoding, "Dave Leonard", "Social"),
+            MyItem(R.drawable.avatar, "Dave Leonard", "Verbal Abuse"),
+            MyItem(R.drawable.avatar, "Dave Leonard", "Physical Assault"),
+            MyItem(R.drawable.avatar, "Dave Leonard", "Social"),
         )
 
         val adapter = MainRecentAdapter(itemList)

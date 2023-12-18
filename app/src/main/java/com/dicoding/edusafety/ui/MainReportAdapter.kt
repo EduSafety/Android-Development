@@ -1,5 +1,6 @@
 package com.dicoding.edusafety.ui
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +24,17 @@ class MainReportAdapter(private val itemList: List<MyItem>) :
 
         holder.imageView.setImageResource(item.imageResource)
         holder.textTitle.text = item.title
+
+        // Tambahkan event klik pada setiap item di RecyclerView
+        holder.itemView.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, ReportActivity::class.java)
+
+            // Mengirim data ke ReportActivity
+            intent.putExtra("selectedCategory", item.title)
+
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {

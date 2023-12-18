@@ -19,6 +19,7 @@ class DetailActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
             finishAffinity()
         }
+
         updateUi()
 
     }

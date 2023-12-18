@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-50dp"
                 android:background="@drawable/rectangle_background"
-                android:elevation="20dp"
+                android:elevation="10dp"
                 android:orientation="horizontal"
                 android:padding="22dp"
                 app:layout_constraintEnd_toEndOf="parent"

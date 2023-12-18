@@ -14,7 +14,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:clipToOutline="true"
-        android:src="@drawable/foto_saya_dicoding"
+        android:src="@drawable/avatar"
         android:outlineProvider="background"
         android:background="@drawable/circle_background" />
 

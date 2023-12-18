@@ -124,6 +124,33 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtUniversityCodeContainer"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:helperText=""
+            app:helperTextTextColor="@android:color/holo_red_dark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColorHint="@color/gray"
+            app:layout_constraintTop_toBottomOf="@id/edtPhoneNumberContainer">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtUniversityCode"
+                android:layout_width="match_parent"
+                android:lines="1"
+                android:inputType="number"
+                android:layout_height="56dp"
+                android:maxLength="13"
+                android:textSize="15sp"
+                android:fontFamily="@font/urbanist_medium"
+                android:background="@drawable/rounded_input"
+                android:hint="Enter Your University Code"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edtPasswordContainer"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             app:helperText=""
@@ -135,7 +162,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:textColorHint="@color/gray"
-            app:layout_constraintTop_toBottomOf="@id/edtPhoneNumberContainer">
+            app:layout_constraintTop_toBottomOf="@id/edtUniversityCodeContainer">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtPassword"

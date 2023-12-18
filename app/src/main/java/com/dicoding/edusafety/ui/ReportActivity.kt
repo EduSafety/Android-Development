@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.edusafety.R
 import com.dicoding.edusafety.data.model.ReportData
@@ -25,6 +26,13 @@ class ReportActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityReportBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        // Ambil data yang dikirimkan dari adapter
+        val selectedTitle = intent.getStringExtra("selectedCategory")
+
+        // Ganti isi dari AutoCompleteTextView
+        binding.autoComplete.setText(selectedTitle ?: "Social")
 
         setupDropdown()
         setupDatePicker()

@@ -19,7 +19,7 @@
             android:background="@drawable/circle_background"
             android:clipToOutline="true"
             android:outlineProvider="background"
-            android:src="@drawable/foto_saya_dicoding"
+            android:src="@drawable/avatar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -145,8 +145,6 @@
         android:id="@+id/btnSave"
         android:enabled="false"
         android:textAllCaps="false"
-        android:background="@drawable/rectangle_background"
-        android:backgroundTint="@color/gray"
         android:layout_marginTop="10dp"
         android:layout_width="75dp"
         android:layout_height="wrap_content"

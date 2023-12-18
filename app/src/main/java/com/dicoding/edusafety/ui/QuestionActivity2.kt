@@ -48,9 +48,9 @@ class QuestionActivity2 : AppCompatActivity() {
     private fun createQuestionItems(): List<QuestionItem> {
         // pertanyaan dan jawaban(autocomplete)
         return listOf(
-            QuestionItem("Pernah ngeroyok orang ga?", resources.getStringArray(R.array.question_1)),
-            QuestionItem("kapan tuh", resources.getStringArray(R.array.question_2)),
-            QuestionItem("kenapa ngeroyok orang", resources.getStringArray(R.array.question_6)),
+            QuestionItem("Example question", resources.getStringArray(R.array.question_1)),
+            QuestionItem("Example question", resources.getStringArray(R.array.question_2)),
+            QuestionItem("Example question", resources.getStringArray(R.array.question_6)),
         )
     }
 

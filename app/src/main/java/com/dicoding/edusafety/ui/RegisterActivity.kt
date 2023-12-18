@@ -46,7 +46,7 @@ class RegisterActivity : AppCompatActivity() {
                 val email = binding.edtEmail.text.toString()
                 val password = binding.edtPassword.text.toString()
                 val phone = binding.edtPhoneNumber.text
-                // All fields are filled, navigate to MainActivity
+                // All fields are filled, navigate to LoginActivity
                 Log.d("INPUT","$name, $email, $phone, $password")
                 viewModel.register(name, email, phone, password)
                 viewModel.isLoading.observe(this) {
@@ -65,10 +65,12 @@ class RegisterActivity : AppCompatActivity() {
                 checkAndSetErrorForEmptyField(binding.edtPhoneNumber, binding.edtPhoneNumberContainer, "Phone number is required")
                 checkAndSetErrorForEmptyField(binding.edtPassword, binding.edtPasswordContainer, "Password is required")
                 checkAndSetErrorForEmptyField(binding.edtConfirmPassword, binding.edtConfirmPasswordContainer, "Confirm Password is required")
+                checkAndSetErrorForEmptyField(binding.edtUniversityCode, binding.edtUniversityCodeContainer, "University Code is required")
             }
         }
 
         setupTextChangeListener(binding.edtFullname, binding.edtFullnameContainer, "Fullname is required")
+        setupTextChangeListener(binding.edtFullname, binding.edtUniversityCodeContainer, "University Code is required")
         setupTextChangeListener(binding.edtEmail, binding.edtEmailContainer, "Email is required") { text ->
             validEmail(text)
         }
@@ -150,7 +152,8 @@ class RegisterActivity : AppCompatActivity() {
                 binding.edtEmail.text?.isNotBlank() == true &&
                 binding.edtPhoneNumber.text?.isNotBlank() == true &&
                 binding.edtPassword.text?.isNotBlank() == true &&
-                binding.edtConfirmPassword.text?.isNotBlank() == true
+                binding.edtConfirmPassword.text?.isNotBlank() == true &&
+                binding.edtUniversityCode.text?.isNotBlank() == true
     }
 
     private fun checkAndSetErrorForEmptyField(
@@ -160,7 +163,6 @@ class RegisterActivity : AppCompatActivity() {
     ) {
         if (editText.text?.isBlank() == true) {
             container.helperText = errorMessage
-            startActivity(Intent(this, InitialPage::class.java))
         }
     }
 
