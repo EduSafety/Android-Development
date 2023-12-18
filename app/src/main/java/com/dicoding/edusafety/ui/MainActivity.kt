@@ -40,14 +40,24 @@ class MainActivity : AppCompatActivity() {
                     replaceFragment(HomeFragment())
                 }
 
+                R.id.leaderboard -> {
+                    replaceFragment(LeaderboardFragment())
+                }
+
                 R.id.profile -> {
                     replaceFragment(ProfileFragment())
                 }
+
+                R.id.consult -> {
+                    replaceFragment(ConsultationFragment())
+                }
+
+
             }
             true
         }
         binding.fab.setOnClickListener{
-            startActivity(Intent(this,ReportActivity::class.java))
+            startActivity(Intent(this,InitialReport::class.java))
         }
         auth = Firebase.auth
         validate()

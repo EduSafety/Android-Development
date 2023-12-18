@@ -9,8 +9,20 @@
         app:showAsAction="withText"/>
 
     <item
+        android:id="@+id/consult"
+        android:icon="@drawable/baseline_chat_bubble_24"
+        android:title="Consult"
+        app:showAsAction="withText"/>
+
+    <item
         android:id="@+id/placeholder"
         android:title=""/>
+
+    <item
+        android:id="@+id/leaderboard"
+        android:icon="@drawable/baseline_leaderboard_24"
+        android:title="Rank"
+        app:showAsAction="withText"/>
 
     <item
         android:id="@+id/profile"

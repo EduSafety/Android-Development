@@ -11,7 +11,6 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:clipToOutline="true"
-        android:src="@drawable/foto_saya_dicoding"
         android:outlineProvider="background"
         android:background="@drawable/circle_background" />
 
@@ -29,14 +28,6 @@
             android:fontFamily="@font/urbanist_bold"
             android:text="Title"
             android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/textDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Description"
-            android:fontFamily="@font/urbanist_medium"
-            android:textSize="14sp"/>
 
     </LinearLayout>
 

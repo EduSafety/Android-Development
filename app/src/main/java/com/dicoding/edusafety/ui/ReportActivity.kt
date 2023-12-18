@@ -1,14 +1,17 @@
 package com.dicoding.edusafety.ui
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.ArrayAdapter
-import android.widget.Toast
+import android.widget.AutoCompleteTextView
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.edusafety.R
+import com.dicoding.edusafety.data.model.ReportData
 import com.dicoding.edusafety.databinding.ActivityReportBinding
+import com.dicoding.edusafety.helper.ReportDataHolder
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import java.text.SimpleDateFormat
@@ -24,14 +27,33 @@ class ReportActivity : AppCompatActivity() {
         binding = ActivityReportBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        // Ambil data yang dikirimkan dari adapter
+        val selectedTitle = intent.getStringExtra("selectedCategory")
+
+        // Ganti isi dari AutoCompleteTextView
+        binding.autoComplete.setText(selectedTitle ?: "Social")
+
         setupDropdown()
         setupDatePicker()
         setupBackButton()
 
-        binding.btnSubmit.setOnClickListener {
+        binding.btnNext.setOnClickListener {
             if (areAllFieldsFilled()) {
                 // Success
-                Toast.makeText(this,"Berhasil", Toast.LENGTH_SHORT).show()
+                val category = binding.autoComplete.text.toString()
+                val perpetratorName = binding.edtNamaPelaku.text.toString()
+                val victimName = binding.edtNamaKorban.text.toString()
+                val incidentDate = binding.tvDate.text.toString()
+                val description = binding.edtDescription.text.toString()
+
+                // Create ReportData instance
+                val reportData = ReportData(category, perpetratorName, victimName, incidentDate, description)
+
+                // Store data in ReportDataHolder
+                ReportDataHolder.reportData = reportData
+
+                startActivity(Intent(this, QuestionActivity2::class.java))
             } else {
                 // Display error messages for empty fields
                 checkAndSetErrorForEmptyField(binding.edtNamaKorban, binding.containerEdtNamaKorban, "Nama Korban is required")
@@ -46,6 +68,7 @@ class ReportActivity : AppCompatActivity() {
         setupTextChangeListener(binding.tvDate, binding.tvDateContainer, "Date is required")
         setupTextChangeListener(binding.edtDescription, binding.containerDescription, "Description is required")
     }
+
 
     private fun setupDropdown() {
         val category = resources.getStringArray(R.array.report_category)
@@ -79,7 +102,7 @@ class ReportActivity : AppCompatActivity() {
     }
 
     private fun setupBackButton() {
-        binding.backArrow.setOnClickListener {
+        binding.backButton.setOnClickListener {
             onBackPressed()
         }
     }

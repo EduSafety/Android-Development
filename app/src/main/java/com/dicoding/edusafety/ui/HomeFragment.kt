@@ -47,13 +47,13 @@ class HomeFragment : Fragment() {
     }
 
     private fun setReportAdapter() {
-        val recyclerView: RecyclerView = requireView().findViewById(R.id.rc_category)
+        val recyclerView: RecyclerView = requireView().findViewById(R.id.rv_category)
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
 
         val itemList = listOf(
-            MyItem(R.drawable.phsyical_assault, "Bullying", "1h 30 Minutes"),
+            MyItem(R.drawable.phsyical_assault, "Verbal Abuse", "1h 30 Minutes"),
             MyItem(R.drawable.bullying, "Physical Assault", "1h 30 Minutes"),
-            MyItem(R.drawable.verbal_abuse, "Verbal Abuse", "30 Minutes"),
+            MyItem(R.drawable.verbal_abuse, "Social", "30 Minutes"),
         )
 
         val adapter = MainReportAdapter(itemList)
@@ -65,9 +65,9 @@ class HomeFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
 
         val itemList = listOf(
-            MyItem(R.drawable.foto_saya_dicoding, "Jawir", "Verbal Abuse"),
-            MyItem(R.drawable.foto_saya_dicoding, "Mas Jawir", "Physical Assault"),
-            MyItem(R.drawable.foto_saya_dicoding, "Dave Leonard", "Bullying"),
+            MyItem(R.drawable.avatar, "Dave Leonard", "Verbal Abuse"),
+            MyItem(R.drawable.avatar, "Dave Leonard", "Physical Assault"),
+            MyItem(R.drawable.avatar, "Dave Leonard", "Social"),
         )
 
         val adapter = MainRecentAdapter(itemList)

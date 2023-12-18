@@ -15,14 +15,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/back_arrow"
+            <ImageButton
+                android:id="@+id/backButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
+                android:background="@drawable/rectangle_background"
+                android:padding="5dp"
                 android:src="@drawable/baseline_keyboard_arrow_left_24"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                />
 
             <ImageView
 
@@ -32,11 +35,11 @@
                 android:background="@drawable/circle_background"
                 android:clipToOutline="true"
                 android:outlineProvider="background"
-                android:src="@drawable/foto_saya_dicoding"
-                app:layout_constraintBottom_toBottomOf="@+id/back_arrow"
+                android:src="@drawable/avatar"
+                app:layout_constraintBottom_toBottomOf="@+id/backButton"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/back_arrow"
-                app:layout_constraintTop_toTopOf="@id/back_arrow" />
+                app:layout_constraintStart_toEndOf="@+id/backButton"
+                app:layout_constraintTop_toTopOf="@id/backButton" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -71,7 +74,6 @@
                 android:backgroundTint="#F7F8F9"
                 android:fontFamily="@font/urbanist_semibold"
                 android:hint="Kategori Kekerasan"
-                android:text="Bulliying"
                 android:inputType="none"
                 android:padding="18dp"
                 android:textColor="#6A707C"
@@ -171,17 +173,19 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtDescription"
                 android:layout_width="match_parent"
-                android:layout_height="110dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/rectangle_background"
                 android:backgroundTint="#F7F8F9"
                 android:fontFamily="@font/urbanist_medium"
                 android:gravity="top"
                 android:hint="Deskripsi Kronologi"
-                android:inputType="text"
-                android:lines="1"
+                android:inputType="textMultiLine"
+                android:lines="5"
+                android:maxLines="5"
                 android:textSize="15sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -221,14 +225,14 @@
 
 
         <Button
-            android:id="@+id/btnSubmit"
+            android:id="@+id/btnNext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="37dp"
             android:height="56dp"
             android:background="@drawable/rectangle_background"
             android:fontFamily="@font/urbanist_semibold"
-            android:text="Submit"
+            android:text="@string/selanjutnya"
             android:textAllCaps="false"
             android:textColor="@color/white" />
 

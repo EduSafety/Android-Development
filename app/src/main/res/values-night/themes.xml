@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Base.Theme.EduSafety" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Base.Theme.EduSafety" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">#35C2C1</item>
         <!-- StatusBar Color -->

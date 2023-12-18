@@ -1,10 +1,13 @@
 package com.dicoding.edusafety.ui
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.edusafety.R
 import com.dicoding.edusafety.data.model.MyItem
@@ -24,6 +27,13 @@ class MainRecentAdapter(private val itemList: List<MyItem>) :
         holder.imageView.setImageResource(item.imageResource)
         holder.textTitle.text = item.title
         holder.textDescription.text = item.description
+
+        // Tambahkan event klik pada setiap item di RecyclerView
+        holder.itemView.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, DetailActivity::class.java)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
