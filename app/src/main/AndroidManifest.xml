@@ -60,7 +60,7 @@
             android:exported="false"
             android:screenOrientation="locked" />
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.InitialPage"
             android:exported="true"
             android:screenOrientation="locked">
             <intent-filter>
@@ -70,7 +70,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.InitialPage"
+            android:name=".ui.MainActivity"
             android:exported="false"
             android:screenOrientation="locked" />
     </application>
