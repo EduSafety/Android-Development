@@ -26,11 +26,11 @@
         " />
 
         <TextView
+            android:id="@+id/tvUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/urbanist_bold"
-            android:text="Dave Leonard"
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@id/imageView"
@@ -54,7 +54,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:fontFamily="@font/urbanist_semibold"
-            android:text="Dave Leonard"
+            android:text="Fullname"
             android:textColor="#6A707C"
             android:textSize="14sp" />
 
@@ -64,31 +64,6 @@
             android:src="@drawable/baseline_edit_24" />
 
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/rectangle_background"
-        android:backgroundTint="#F7F8F9"
-        android:padding="18dp">
-
-        <EditText
-            android:id="@+id/edtEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@null"
-            android:fontFamily="@font/urbanist_semibold"
-            android:text="Jawir@gmail.com"
-            android:textColor="#6A707C"
-            android:textSize="14sp" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_edit_24" />
     </LinearLayout>
 
     <LinearLayout
@@ -106,7 +81,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:fontFamily="@font/urbanist_semibold"
-            android:text="08181818181"
+            android:text="Number"
             android:textColor="#6A707C"
             android:textSize="14sp" />
 
@@ -131,7 +106,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:fontFamily="@font/urbanist_semibold"
-            android:text="@string/universitas"
+            android:text="Code Access University"
             android:textColor="#6A707C"
             android:textSize="14sp" />
 

@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.edusafety.R
 import com.dicoding.edusafety.data.model.LeaderBoardItem
-import com.dicoding.edusafety.data.model.MyItem
 
 class LeaderboardAdapter(private val itemList: List<LeaderBoardItem>) :
     RecyclerView.Adapter<LeaderboardAdapter.ViewHolder>() {

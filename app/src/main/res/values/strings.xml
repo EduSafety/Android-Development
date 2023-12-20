@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">eduSafety</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="default_web_client_id">108467967394-trc6rpogpgqf8bibvqoo3b9uhts11n1a.apps.googleusercontent.com</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="default_web_client_id">108467967394-ai7ktj3vjfv1682ric30n40ed2gmblnv.apps.googleusercontent.com</string>
     <string name="question1">Seberapa sering Anda mengalami kekerasan yang membuat Anda merasa terganggu atau merasa terintimidasi (perlakuan yang menyebabkan kurang kepercayaan diri atau takut) ?</string>
     <string name="question2">Kapan terakhir kali Anda mengalami kekerasan ?</string>
     <string name="question3">Apakah anda bisa mengatasi masalah setelah mendapatkan pengarahan dari orang lain ?</string>

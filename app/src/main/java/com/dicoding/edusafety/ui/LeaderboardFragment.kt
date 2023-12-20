@@ -1,15 +1,14 @@
 package com.dicoding.edusafety.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.edusafety.R
 import com.dicoding.edusafety.data.model.LeaderBoardItem
-import com.dicoding.edusafety.data.model.MyItem
 
 class LeaderboardFragment : Fragment() {
 

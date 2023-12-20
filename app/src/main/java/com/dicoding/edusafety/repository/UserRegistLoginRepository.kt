@@ -13,10 +13,11 @@ class UserRegistLoginRepository private constructor(
     suspend fun registerUser(
         name: String,
         email: String,
+        accessCode: String,
         phone: Editable?,
         password: String
     ): Response<RegisterResponse> {
-        return apiService.register(name, email, phone, password)
+        return apiService.register(name, email, accessCode, phone, password)
     }
 
     suspend fun loginUser(email: String, password: String): Response<LoginResponse> {

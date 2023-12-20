@@ -22,11 +22,11 @@ class RegisterViewModel(private val userRegistLoginRepository: UserRegistLoginRe
     private val _validRegist = MutableLiveData<Boolean?>()
     val validRegist: MutableLiveData<Boolean?> = _validRegist
 
-    fun register(name: String, email: String, phone: Editable?, password: String) {
+    fun register(name: String, email: String, accessCode: String, phone: Editable?, password: String) {
         _isLoading.value = true
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val response = userRegistLoginRepository.registerUser(name, email, phone, password)
+                val response = userRegistLoginRepository.registerUser(name, email, accessCode, phone, password)
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
                         _isLoading.value = false

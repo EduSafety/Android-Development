@@ -6,7 +6,6 @@ import android.widget.Button
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.edusafety.R
-import com.google.android.play.integrity.internal.f
 
 class InitialReport : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
