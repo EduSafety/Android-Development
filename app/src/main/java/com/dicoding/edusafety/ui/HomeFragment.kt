@@ -2,16 +2,22 @@ package com.dicoding.edusafety.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.dicoding.edusafety.R
 import com.dicoding.edusafety.data.model.MyItem
 import com.dicoding.edusafety.databinding.FragmentHomeBinding
+import com.dicoding.edusafety.viewmodel.MainViewModel
+import com.dicoding.edusafety.viewmodel.MainViewModelApi
+import com.dicoding.edusafety.viewmodel.ViewModelFactory
+import com.dicoding.edusafety.viewmodel.ViewModelFactoryApi
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
@@ -42,6 +48,26 @@ class HomeFragment : Fragment() {
         auth = Firebase.auth
         val currentUser = auth.currentUser
         if(currentUser != null){
+            val factoryPref: ViewModelFactoryApi = ViewModelFactoryApi.getInstance(requireContext())
+            val viewModel = ViewModelProvider(this, factoryPref)[MainViewModelApi::class.java]
+
+            val factoryDS: ViewModelFactory = ViewModelFactory.getInstance(requireContext())
+            val viewModelDS = ViewModelProvider(this, factoryDS)[MainViewModel::class.java]
+
+
+            viewModelDS.getTokenUser().observe(requireActivity(), Observer { token ->
+                if (token != null){
+                    viewModel.getCurrentUser(token)
+                    viewModel.currentUser.observe(requireActivity(), Observer { user ->
+                        if(user != null){
+                            val displayName = user.fullname
+                            Log.d("DISPLAY NAME", "$displayName")
+                            binding.nameProfile.text = displayName
+                            binding.profilePhoto.setImageResource(R.drawable.photoprofile)
+                        }
+                    })
+                }
+            })
             updateUI(currentUser)
         }
     }
@@ -76,15 +102,7 @@ class HomeFragment : Fragment() {
 
     private fun updateUI(currentUser: FirebaseUser?) {
         if (currentUser != null) {
-            val uid = currentUser.uid
-            val photoUrl = currentUser.photoUrl
-            val displayName = currentUser.displayName
 
-            binding.nameProfile.text = displayName
-            Glide.with(this)
-                .load(photoUrl)
-                .into(binding.profilePhoto)
         }
     }
-
 }

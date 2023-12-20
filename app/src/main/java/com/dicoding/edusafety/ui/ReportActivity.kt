@@ -1,13 +1,22 @@
 package com.dicoding.edusafety.ui
 
+import android.Manifest
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.LocationListener
+import android.location.LocationManager
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
+import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.dicoding.edusafety.R
 import com.dicoding.edusafety.data.model.ReportData
 import com.dicoding.edusafety.databinding.ActivityReportBinding
@@ -22,11 +31,58 @@ class ReportActivity : AppCompatActivity() {
     private lateinit var binding: ActivityReportBinding
     private val myCalendar = Calendar.getInstance()
 
+    private var currentImageUri: Uri? = null
+    private lateinit var locationManager: LocationManager
+    private lateinit var locationListener: LocationListener
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            if (isGranted) {
+                Toast.makeText(this, "Permission request granted", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, "Permission request denied", Toast.LENGTH_LONG).show()
+            }
+        }
+
+    private fun allPermissionsGranted() =
+        ContextCompat.checkSelfPermission(
+            this,
+            REQUIRED_PERMISSION
+        ) == PackageManager.PERMISSION_GRANTED
+
+    private val launcherGallery = registerForActivityResult(
+        ActivityResultContracts.PickVisualMedia()
+    ) { uri: Uri? ->
+        if (uri != null) {
+            currentImageUri = uri
+            showImage()
+        } else {
+            Log.d("Photo Picker", "No media selected")
+        }
+    }
+
+    private fun showImage() {
+        currentImageUri?.let {
+            Log.d("Image URI", "showImage: $it")
+            binding.imageAttachFile.setImageURI(it)
+        }
+    }
+
+    private fun startGallery() {
+        launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityReportBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        if (!allPermissionsGranted()) {
+            requestPermissionLauncher.launch(REQUIRED_PERMISSION)
+        }
 
         // Ambil data yang dikirimkan dari adapter
         val selectedTitle = intent.getStringExtra("selectedCategory")
@@ -38,6 +94,9 @@ class ReportActivity : AppCompatActivity() {
         setupDatePicker()
         setupBackButton()
 
+        binding.imageAttachFile.setOnClickListener{
+            startGallery()
+        }
         binding.btnNext.setOnClickListener {
             if (areAllFieldsFilled()) {
                 // Success
@@ -140,5 +199,9 @@ class ReportActivity : AppCompatActivity() {
 
             override fun afterTextChanged(s: Editable?) {}
         })
+    }
+
+    companion object {
+        private const val REQUIRED_PERMISSION = Manifest.permission.CAMERA
     }
 }

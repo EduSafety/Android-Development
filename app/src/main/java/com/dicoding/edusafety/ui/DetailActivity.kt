@@ -1,10 +1,8 @@
 package com.dicoding.edusafety.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
-import com.dicoding.edusafety.R
+import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.edusafety.databinding.ActivityDetailBinding
 import com.dicoding.edusafety.helper.ReportDataHolder
 

@@ -140,7 +140,7 @@
                 android:id="@+id/edtUniversityCode"
                 android:layout_width="match_parent"
                 android:lines="1"
-                android:inputType="number"
+                android:inputType="text"
                 android:layout_height="56dp"
                 android:maxLength="13"
                 android:textSize="15sp"

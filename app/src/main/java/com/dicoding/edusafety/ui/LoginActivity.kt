@@ -10,14 +10,13 @@ import android.text.TextWatcher
 import android.util.Log
 import android.util.Patterns
 import android.view.View
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.edusafety.R
-import com.dicoding.edusafety.data.pref.UserModel
 import com.dicoding.edusafety.databinding.ActivityLoginBinding
 import com.dicoding.edusafety.viewmodel.LoginActivityViewModel
 import com.dicoding.edusafety.viewmodel.LoginViewModel
@@ -28,10 +27,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.AuthCredential
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
@@ -54,39 +55,46 @@ class LoginActivity : AppCompatActivity() {
         binding.loginBtn.setOnClickListener {
             if (areAllFieldsFilled()) {
                 // All fields are filled, navigate to MainActivity
-            val factoryApi: LoginViewModelFactory = LoginViewModelFactory.getInstance()
-            val viewModelApi =
-                ViewModelProvider(this, factoryApi)[LoginActivityViewModel::class.java]
+                val factoryApi: LoginViewModelFactory = LoginViewModelFactory.getInstance()
+                val viewModelApi =
+                    ViewModelProvider(this, factoryApi)[LoginActivityViewModel::class.java]
 
-            val factoryPref: ViewModelFactory = ViewModelFactory.getInstance(this)
-            val viewModel = ViewModelProvider(this, factoryPref)[LoginViewModel::class.java]
+                val factoryPref: ViewModelFactory = ViewModelFactory.getInstance(this)
+                val viewModel = ViewModelProvider(this, factoryPref)[LoginViewModel::class.java]
 
-            viewModelApi.isLoading.observe(this) {
-                showLoading(it)
-                Log.d("LOADING", "$it")
-            }
+                viewModelApi.isLoading.observe(this) {
+                    showLoading(it)
+                    Log.d("LOADING", "$it")
+                }
 
-            val email = binding.emailEditText.text.toString()
-            val password = binding.passwordEditText.text.toString()
-
-
-            viewModelApi.login(email, password)
-            viewModelApi.validLogin.observe(this) {
-                   if (it != null) {
-                        validLogin(it)
-                        viewModelApi.resetRegisterResponse()
-                        viewModelApi.token.observe(this, Observer { token ->
-                            viewModel.saveSession(UserModel(email, token.toString(), true))
-                            startActivity(Intent(this, MainActivity::class.java))
-                            finish()
-                            Log.d("TOKEN MASUK", "$token")
-                       })
-                   }
-               }
+                val email = binding.emailEditText.text.toString()
+                val password = binding.passwordEditText.text.toString()
+                signInWithEmailAndPassword(email, password)
+//            viewModelApi.login(email, password)
+//            viewModelApi.validLogin.observe(this) {
+//                   if (it != null) {
+//                        validLogin(it)
+//                        viewModelApi.resetRegisterResponse()
+//                        viewModelApi.token.observe(this, Observer { token ->
+//                            viewModel.saveSession(UserModel(email, token.toString(), true))
+//                            startActivity(Intent(this, MainActivity::class.java))
+//                            finish()
+//                            Log.d("TOKEN MASUK", "$token")
+//                       })
+//                   }
+//               }
             } else {
                 // Display error messages for empty fields
-                checkAndSetErrorForEmptyField(binding.emailEditText, binding.emailContainer, "Email is required")
-                checkAndSetErrorForEmptyField(binding.passwordEditText, binding.passwordContainer, "Password is required")
+                checkAndSetErrorForEmptyField(
+                    binding.emailEditText,
+                    binding.emailContainer,
+                    "Email is required"
+                )
+                checkAndSetErrorForEmptyField(
+                    binding.passwordEditText,
+                    binding.passwordContainer,
+                    "Password is required"
+                )
             }
         }
 
@@ -119,6 +127,26 @@ class LoginActivity : AppCompatActivity() {
         resultLauncher.launch(signInIntent)
     }
 
+    private fun signInWithEmailAndPassword(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this, OnCompleteListener<AuthResult> { task ->
+                if (task.isSuccessful) {
+                    // Sign in success
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                    Toast.makeText(this, "Authentication successful.", Toast.LENGTH_SHORT).show()
+
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Toast.makeText(
+                        this,
+                        "Authentication failed." + task.exception,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })
+    }
+
     private var resultLauncher: ActivityResultLauncher<Intent> = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
@@ -143,6 +171,11 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
+                    val currentUser = auth.currentUser
+                    currentUser?.getIdToken(true)?.addOnSuccessListener { result ->
+                        val token = result.token
+                        Log.d("TOKEN GOOGLE", "$token")
+                    }
                     Log.d(TAG, "signInWithCredential:success")
                     val user: FirebaseUser? = auth.currentUser
                     updateUI(user)
