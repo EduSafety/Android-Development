@@ -308,12 +308,12 @@
 
             <ImageView
                 android:id="@+id/bukti"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:maxHeight="300dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="14dp"
                 android:paddingHorizontal="22dp"
-                android:scaleType="centerCrop"
                 android:src="@drawable/baseline_image_24"
                 android:textColor="@color/black"
                 android:textSize="14sp" />

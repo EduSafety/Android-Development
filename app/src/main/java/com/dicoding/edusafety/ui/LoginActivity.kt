@@ -103,6 +103,10 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
 
+        binding.forgotPassword.setOnClickListener{
+            startActivity(Intent(this, ForgotPassword::class.java))
+        }
+
         // Configure Google Sign In
         val gso = GoogleSignInOptions
             .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -248,7 +252,7 @@ class LoginActivity : AppCompatActivity() {
         if (!passwordText.matches(".*[a-z].*".toRegex())) {
             return "Must Contain 1 Lower-case Character"
         }
-        if (!passwordText.matches(".*[@#\$%^&+=].*".toRegex())) {
+        if (!passwordText.matches(".*[@#\$%^&+=!].*".toRegex())) {
             return "Must Contain 1 Special Character (@#\$%^&+=)"
         }
 

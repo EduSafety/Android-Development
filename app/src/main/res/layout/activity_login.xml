@@ -7,13 +7,15 @@
     android:padding="22dp"
     tools:context=".ui.LoginActivity">
 
-    <ImageView
+    <ImageButton
         android:id="@+id/back_button"
-        android:layout_height="19dp"
-        android:layout_width="19dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_background"
+        android:padding="5dp"
         android:src="@drawable/baseline_keyboard_arrow_left_24"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/header_title"

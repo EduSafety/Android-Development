@@ -30,6 +30,14 @@
     <string name="konsultasi">Konsultasi</string>
     <string name="coming_soon">Will be available soon...</string>
     <string name="save">Save</string>
+    <string name="social">Social</string>
+    <string name="verbal">Verbal</string>
+    <string name="physical">Physical</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="description_forgot_password">Don\'t worry! It occurs. Please enter the email address linked with your account.</string>
+    <string name="send_code">Send Code</string>
+    <string name="create_new_password">Create new password</string>
+    <string name="create_new_password_desc">Your new password must be unique from those previously used.</string>
 
     <string-array name="report_category">
         <item>Verbal Abuse</item>
