@@ -14,7 +14,7 @@ class RegisterSuccessActivity : AppCompatActivity() {
 
         findViewById<Button>(id.backToLogin).setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
-            finish()
+            finishAffinity()
         }
     }
 }

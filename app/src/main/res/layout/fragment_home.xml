@@ -102,12 +102,11 @@
 
                         <TextView
                             android:id="@+id/reportsTotalNumber"
-                            android:gravity="center"
-                            android:textColor="@color/primary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/urbanist_bold"
-                            android:text="20"
+                            android:gravity="center"
+                            android:textColor="@color/primary"
                             android:textSize="30sp" />
 
                         <TextView
@@ -139,11 +138,10 @@
 
                         <TextView
                             android:id="@+id/verbalNumber"
-                            android:gravity="center"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/urbanist_bold"
-                            android:text="10"
+                            android:gravity="center"
                             android:textColor="@color/primary"
                             android:textSize="15sp"
                             app:layout_constraintStart_toStartOf="parent" />
@@ -168,12 +166,11 @@
 
                         <TextView
                             android:id="@+id/socialNumber"
-                            android:gravity="center"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/primary"
                             android:fontFamily="@font/urbanist_bold"
-                            android:text="5"
+                            android:gravity="center"
+                            android:textColor="@color/primary"
                             android:textSize="15sp"
                             app:layout_constraintStart_toStartOf="parent" />
 
@@ -197,12 +194,11 @@
 
                         <TextView
                             android:id="@+id/physicalNumber"
-                            android:gravity="center"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/primary"
                             android:fontFamily="@font/urbanist_bold"
-                            android:text="5"
+                            android:gravity="center"
+                            android:textColor="@color/primary"
                             android:textSize="15sp"
                             app:layout_constraintStart_toStartOf="parent" />
 

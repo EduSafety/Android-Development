@@ -13,6 +13,9 @@ class ViewModelFactoryApi private constructor(private val currentUserRepository:
         if (modelClass.isAssignableFrom(MainViewModelApi::class.java)) {
             return MainViewModelApi(currentUserRepository) as T
         }
+        if (modelClass.isAssignableFrom(ReportViewModel::class.java)) {
+            return ReportViewModel(currentUserRepository) as T
+        }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
 

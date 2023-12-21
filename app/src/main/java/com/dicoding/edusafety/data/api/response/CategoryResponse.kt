@@ -14,15 +14,6 @@ data class CategoryResponse(
 	val message: String? = null
 )
 
-data class RecordItem(
-
-	@field:SerializedName("category_id")
-	val categoryId: Int? = null,
-
-	@field:SerializedName("name")
-	val name: String? = null
-)
-
 data class DataCategory(
 
 	@field:SerializedName("total")
@@ -32,11 +23,20 @@ data class DataCategory(
 	val pages: Int? = null,
 
 	@field:SerializedName("record")
-	val record: List<RecordItem?>? = null,
+	val record: List<RecordItemCategory?>? = null,
 
 	@field:SerializedName("limit")
 	val limit: Int? = null,
 
 	@field:SerializedName("page")
 	val page: Int? = null
+)
+
+data class RecordItemCategory(
+
+	@field:SerializedName("category_id")
+	val categoryId: Int? = null,
+
+	@field:SerializedName("name")
+	val name: String? = null
 )

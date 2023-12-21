@@ -1,16 +1,25 @@
 package com.dicoding.edusafety.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.dicoding.edusafety.databinding.ActivityCreateNewPasswordBinding
+import com.dicoding.edusafety.viewmodel.LoginViewModelFactory
+import com.dicoding.edusafety.viewmodel.RegisterViewModel
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
 class CreateNewPassword : AppCompatActivity() {
     private lateinit var binding: ActivityCreateNewPasswordBinding
 
+    private val viewModel by viewModels<RegisterViewModel> {
+        LoginViewModelFactory.getInstance()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCreateNewPasswordBinding.inflate(layoutInflater)
@@ -35,6 +44,21 @@ class CreateNewPassword : AppCompatActivity() {
         binding.edtPassword.addTextChangedListener(passwordTextWatcher)
         binding.edtConfirmPassword.addTextChangedListener(confirmPasswordTextWatcher)
 
+        binding.resetPasswordBtn.setOnClickListener {
+            val email = intent.getStringExtra("email")
+            val password = binding.edtConfirmPassword.text.toString()
+            if (email != null) {
+                viewModel.resetPassword(email, password)
+                viewModel.valitOtp.observe(this, Observer { data ->
+                    if (data?.acknowledge == true){
+                        startActivity(Intent(this, LoginActivity::class.java))
+                        finishAffinity()
+                    }else if (data?.acknowledge == false){
+                        showAlertDialog("Gagal Reset Password","Periksa Koneksi Anda!","OK")
+                    }
+                })
+            }
+        }
         setUpBackButton()
     }
 
@@ -117,5 +141,16 @@ class CreateNewPassword : AppCompatActivity() {
 
         // Aktifkan tombol reset jika kedua password valid dan sesuai
         binding.resetPasswordBtn.isEnabled = passwordError == null && confirmPasswordError == null
+    }
+
+    private fun showAlertDialog(title: String, message: String, buttonPos: String) {
+        AlertDialog.Builder(this).apply {
+            setTitle(title)
+            setMessage(message)
+            setPositiveButton(buttonPos) { _, _ ->
+            }
+            create()
+            show()
+        }
     }
 }

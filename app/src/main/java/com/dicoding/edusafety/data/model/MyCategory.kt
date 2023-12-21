@@ -1,7 +1,7 @@
 package com.dicoding.edusafety.data.model
 
-data class MyItem(
-    val imageResource: String,
+data class MyCategory(
+    val imageResource: Int,
     val title: String,
     val description: String
 )

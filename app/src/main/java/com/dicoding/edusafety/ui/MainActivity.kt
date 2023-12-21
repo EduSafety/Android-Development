@@ -73,6 +73,8 @@ class MainActivity : AppCompatActivity() {
             if (email != null){
                 Log.d("TOKEN GOOGLE", "$token, $email")
                 viewModel.saveSession(UserModel(email, token.toString(), true))
+            }else{
+                viewModel.logout()
             }
         }
         validate()

@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.OtpForgot"
+            android:exported="false" />
+        <activity
             android:name=".ui.CreateNewPassword"
             android:exported="false"
             android:screenOrientation="locked" />
