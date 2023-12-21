@@ -1,0 +1,44 @@
+<!-- res/layout/item_question.xml -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- TextView untuk pertanyaan -->
+    <TextView
+        android:id="@+id/textViewPertanyaan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:fontFamily="@font/urbanist_semibold"
+        tools:text="siapa bapak mu"
+        android:textColor="@android:color/black"/>
+
+    <!-- TextInputLayout dengan AutoCompleteTextView untuk jawaban -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/containerJawaban"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextViewJawaban"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            tools:text="sueb"
+            android:fontFamily="@font/urbanist_medium"
+            android:background="@drawable/rectangle_background"
+            android:backgroundTint="#F7F8F9"
+            android:inputType="none"
+            android:padding="18dp"
+            android:textColor="#6A707C"
+            android:textSize="14sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+</LinearLayout>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.InitialReport">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@drawable/banner_question" />
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/rectangle_background"
+            android:padding="5dp"
+            android:src="@drawable/baseline_keyboard_arrow_left_24" />
+
+    </FrameLayout>
+
+
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:padding="22dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginBottom="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:fontFamily="@font/urbanist_bold"
+            android:textSize="18sp"
+            android:text="Ketahui Klasifikasi Resiko Kamu"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:fontFamily="@font/urbanist_medium"
+            android:text="Kami akan memberikan klasifikasi sesuai dengan jawaban dan toleransi risiko kamu"/>
+
+        <LinearLayout
+            android:layout_marginTop="32dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_gravity="center">
+
+            <ImageButton
+                android:layout_marginEnd="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/transparent_background"
+                android:src="@drawable/baseline_shield_24"/>
+            <TextView
+                android:fontFamily="@font/urbanist_semibold"
+                android:textSize="12sp"
+                android:textColor="@color/primary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data kamu aman dan terenskripsi"/>
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/startQuestionBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="37dp"
+            android:height="56dp"
+            android:background="@drawable/rectangle_background"
+            android:fontFamily="@font/urbanist_semibold"
+            android:text="Mulai"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/forgotPassword" />
+
+    </LinearLayout>
+
+</LinearLayout>

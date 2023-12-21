@@ -12,13 +12,16 @@
         android:padding="22dp"
         tools:context=".ui.LoginActivity">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/backButton"
-            android:layout_height="19dp"
-            android:layout_width="19dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rectangle_background"
+            android:padding="5dp"
             android:src="@drawable/baseline_keyboard_arrow_left_24"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/headerTitle"
@@ -26,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/urbanist_bold"
-            android:text="Register New Accouut"
+            android:text="Register New Account"
             android:textColor="@color/dark"
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -44,75 +47,165 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/headerTitle" />
 
-        <EditText
-            android:id="@+id/edtFullname"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtFullnameContainer"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:helperText=""
+            app:helperTextTextColor="@android:color/holo_red_dark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:height="56dp"
-            android:background="@drawable/rounded_input"
-            android:fontFamily="@font/urbanist_medium"
-            android:hint="Enter Your Fullname"
-            android:paddingStart="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:textColorHint="@color/gray"
-            android:textSize="15dp"
-            app:layout_constraintTop_toBottomOf="@id/subHeader" />
+            app:layout_constraintTop_toBottomOf="@id/subHeader">
 
-        <EditText
-            android:id="@+id/edtEmail"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtFullname"
+                android:layout_width="match_parent"
+                android:lines="1"
+                android:inputType="text"
+                android:layout_height="56dp"
+                android:textSize="15sp"
+                android:fontFamily="@font/urbanist_medium"
+                android:background="@drawable/rounded_input"
+                android:hint="Enter Your Fullname"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtEmailContainer"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:helperText=""
+            app:helperTextTextColor="@android:color/holo_red_dark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:height="56dp"
-            android:background="@drawable/rounded_input"
-            android:fontFamily="@font/urbanist_medium"
-            android:hint="Enter Your Email"
-            android:paddingStart="20dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:textColorHint="@color/gray"
-            android:textSize="15dp"
-            app:layout_constraintTop_toBottomOf="@id/edtFullname" />
+            app:layout_constraintTop_toBottomOf="@id/edtFullnameContainer">
 
-        <EditText
-            android:id="@+id/edtPhone"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtEmail"
+                android:layout_width="match_parent"
+                android:lines="1"
+                android:inputType="textEmailAddress"
+                android:layout_height="56dp"
+                android:textSize="15sp"
+                android:fontFamily="@font/urbanist_medium"
+                android:background="@drawable/rounded_input"
+                android:hint="Enter Your Email"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtPhoneNumberContainer"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:helperText=""
+            app:helperTextTextColor="@android:color/holo_red_dark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:height="56dp"
-            android:background="@drawable/rounded_input"
-            android:fontFamily="@font/urbanist_medium"
-            android:hint="Enter Your Phone number"
-            android:paddingStart="20dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:textColorHint="@color/gray"
-            android:textSize="15dp"
-            app:layout_constraintTop_toBottomOf="@id/edtEmail" />
+            app:layout_constraintTop_toBottomOf="@id/edtEmailContainer">
 
-        <EditText
-            android:id="@+id/edtPassword"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtPhoneNumber"
+                android:layout_width="match_parent"
+                android:lines="1"
+                android:inputType="number"
+                android:layout_height="56dp"
+                android:maxLength="13"
+                android:textSize="15sp"
+                android:fontFamily="@font/urbanist_medium"
+                android:background="@drawable/rounded_input"
+                android:hint="Enter Your Phone Number"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtUniversityCodeContainer"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:helperText=""
+            app:helperTextTextColor="@android:color/holo_red_dark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:height="56dp"
-            android:background="@drawable/rounded_input"
-            android:fontFamily="@font/urbanist_medium"
-            android:hint="Enter Your Password"
-            android:paddingStart="20dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:textColorHint="@color/gray"
-            android:textSize="15dp"
-            app:layout_constraintTop_toBottomOf="@id/edtPhone" />
+            app:layout_constraintTop_toBottomOf="@id/edtPhoneNumberContainer">
 
-        <EditText
-            android:id="@+id/edtConfirmPassword"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtUniversityCode"
+                android:layout_width="match_parent"
+                android:lines="1"
+                android:inputType="text"
+                android:layout_height="56dp"
+                android:maxLength="13"
+                android:textSize="15sp"
+                android:fontFamily="@font/urbanist_medium"
+                android:background="@drawable/rounded_input"
+                android:hint="Enter Your University Code"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtPasswordContainer"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:helperText=""
+            app:helperTextTextColor="@android:color/holo_red_dark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:height="56dp"
-            android:background="@drawable/rounded_input"
-            android:fontFamily="@font/urbanist_medium"
-            android:hint="Enter Your Password"
-            android:paddingStart="20dp"
+            android:layout_marginTop="12dp"
+            app:passwordToggleEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:textColorHint="@color/gray"
-            android:textSize="15dp"
-            app:layout_constraintTop_toBottomOf="@id/edtPassword" />
+            app:layout_constraintTop_toBottomOf="@id/edtUniversityCodeContainer">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtPassword"
+                android:layout_width="match_parent"
+                android:lines="1"
+                android:inputType="textPassword"
+                android:layout_height="56dp"
+                android:textSize="15sp"
+                android:fontFamily="@font/urbanist_medium"
+                android:background="@drawable/rounded_input"
+                android:hint="Enter Your Password"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtConfirmPasswordContainer"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:helperText=""
+            app:helperTextTextColor="@android:color/holo_red_dark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:passwordToggleEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColorHint="@color/gray"
+            app:layout_constraintTop_toBottomOf="@id/edtPasswordContainer">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfirmPassword"
+                android:layout_width="match_parent"
+                android:lines="1"
+                android:inputType="textPassword"
+                android:layout_height="56dp"
+                android:textSize="15sp"
+                android:fontFamily="@font/urbanist_medium"
+                android:background="@drawable/rounded_input"
+                android:hint="Confirm Your Password"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btn_register"
@@ -125,40 +218,17 @@
             android:text="Register"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            app:layout_constraintTop_toBottomOf="@id/edtConfirmPassword" />
-
-
-        <TextView
-            android:id="@+id/orLoginWith"
+            app:layout_constraintTop_toBottomOf="@id/edtConfirmPasswordContainer" />
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/urbanist_semibold"
-            android:text="Or Login With"
-            android:textSize="14dp"
-            android:textColor="@color/dark_gray"
+            android:layout_marginTop="324dp"
+            android:layout_marginEnd="160dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_register" />
-
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/loginWithGoogle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:height="56dp"
-            android:background="@drawable/rectangle_background"
-            android:drawableStart="@drawable/ic_google"
-            android:drawablePadding="85dp"
-            android:fontFamily="@font/urbanist_semibold"
-            android:gravity="start|center_vertical"
-            android:paddingStart="20dp"
-            android:text="Login with Google"
-            android:textAllCaps="false"
-            android:textColor="@color/dark"
-            app:layout_constraintTop_toBottomOf="@id/orLoginWith" />
-
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

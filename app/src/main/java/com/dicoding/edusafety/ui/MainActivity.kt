@@ -1,17 +1,38 @@
 package com.dicoding.edusafety.ui
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.dicoding.edusafety.R
+import com.dicoding.edusafety.data.pref.UserModel
+
+import com.dicoding.edusafety.databinding.ActivityMainBinding
+import com.dicoding.edusafety.viewmodel.LoginViewModel
+import com.dicoding.edusafety.viewmodel.MainViewModel
+import com.dicoding.edusafety.viewmodel.ViewModelFactory
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navigationView: BottomNavigationView
+    private lateinit var binding : ActivityMainBinding
+    private lateinit var auth: FirebaseAuth
+    private var profileFragment: ProfileFragment? = null
+    private val viewModel by viewModels<MainViewModel> {
+        ViewModelFactory.getInstance(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         replaceFragment(HomeFragment())
 
@@ -22,15 +43,41 @@ class MainActivity : AppCompatActivity() {
                     replaceFragment(HomeFragment())
                 }
 
+                R.id.leaderboard -> {
+                    replaceFragment(LeaderboardFragment())
+                }
+
                 R.id.profile -> {
                     replaceFragment(ProfileFragment())
                 }
+
+                R.id.consult -> {
+                    replaceFragment(ConsultationFragment())
+                }
+
+
             }
             true
         }
-        //simulasi login, delete soon (kalo fitur login dah bisa eakk)
-//        isLogin()
-//        Log.d("MainActivity","isLogin: $isLogin")
+        binding.fab.setOnClickListener{
+            startActivity(Intent(this,InitialReport::class.java))
+        }
+
+        auth = Firebase.auth
+        val currentUser = auth.currentUser
+        currentUser?.getIdToken(false)?.addOnSuccessListener { result ->
+            val factoryPref: ViewModelFactory = ViewModelFactory.getInstance(this)
+            val viewModel = ViewModelProvider(this, factoryPref)[LoginViewModel::class.java]
+            val token = result.token
+            val email = currentUser.email
+            if (email != null){
+                Log.d("TOKEN GOOGLE", "$token, $email")
+                viewModel.saveSession(UserModel(email, token.toString(), true))
+            }else{
+                viewModel.logout()
+            }
+        }
+        validate()
     }
 
     private fun replaceFragment(fragment: Fragment) {
@@ -41,16 +88,25 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//    //simulasi login, delete soon
-//    private fun isLogin(){
-//        if (!isLogin){
-//            startActivity(Intent(this,InitialPage::class.java))
-//        }
-//    }
+    private fun updateUI(currentUser: FirebaseUser?) {
+        if (currentUser == null) {
+            startActivity(Intent(this@MainActivity, InitialPage::class.java))
+            finish()
+        }
+    }
 
-    //delete soon
-//    companion object{
-//        var isLogin = false
-//    }
-
+    private fun validate(){
+        val currentUser = auth.currentUser
+        if (currentUser == null) {
+            Log.d("noAuthGoogle", "RUN ERROR")
+            viewModel.getSession().observe(this) { user ->
+                if (!user.isLogin) {
+                    startActivity(Intent(this@MainActivity, InitialPage::class.java))
+                    finish()
+                }
+            }
+        } else {
+            updateUI(currentUser)
+        }
+    }
 }

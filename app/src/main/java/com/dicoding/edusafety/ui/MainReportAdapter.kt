@@ -1,5 +1,6 @@
 package com.dicoding.edusafety.ui
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,9 +8,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.edusafety.R
-import com.dicoding.edusafety.data.model.MyItem
+import com.dicoding.edusafety.data.model.MyCategory
 
-class MainReportAdapter(private val itemList: List<MyItem>) :
+class MainReportAdapter(private val itemList: List<MyCategory>) :
     RecyclerView.Adapter<MainReportAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -23,7 +24,16 @@ class MainReportAdapter(private val itemList: List<MyItem>) :
 
         holder.imageView.setImageResource(item.imageResource)
         holder.textTitle.text = item.title
-        holder.textDescription.text = item.description
+
+        // Tambahkan event klik pada setiap item di RecyclerView
+        holder.itemView.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, ReportActivity::class.java)
+
+            // Mengirim data ke ReportActivity
+            intent.putExtra("selectedCategory", item.title)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -33,6 +43,5 @@ class MainReportAdapter(private val itemList: List<MyItem>) :
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
         val textTitle: TextView = itemView.findViewById(R.id.textTitle)
-        val textDescription: TextView = itemView.findViewById(R.id.textDescription)
     }
 }

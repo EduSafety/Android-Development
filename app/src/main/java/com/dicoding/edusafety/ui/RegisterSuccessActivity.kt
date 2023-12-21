@@ -12,8 +12,9 @@ class RegisterSuccessActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_register_success)
 
-        findViewById<Button>(id.backToLogin).setOnClickListener{
-            startActivity(Intent(this,LoginActivity::class.java))
+        findViewById<Button>(id.backToLogin).setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finishAffinity()
         }
     }
 }

@@ -5,41 +5,32 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingHorizontal="22dp"
-    android:paddingBottom="22dp">
+    android:paddingBottom="?attr/actionBarSize">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp">
 
         <ImageView
-            android:id="@+id/back_arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:src="@drawable/baseline_keyboard_arrow_left_24"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-
             android:id="@+id/imageView"
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:background="@drawable/circle_background"
             android:clipToOutline="true"
             android:outlineProvider="background"
-            android:src="@drawable/foto_saya_dicoding"
-            app:layout_constraintBottom_toBottomOf="@+id/back_arrow"
+            android:src="@drawable/avatar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/back_arrow"
-            app:layout_constraintTop_toTopOf="@id/back_arrow" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        " />
 
         <TextView
+            android:id="@+id/tvUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/urbanist_bold"
-            android:text="Jawir Mantap"
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@id/imageView"
@@ -49,7 +40,6 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
-        android:id="@+id/edtUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="38dp"
@@ -58,12 +48,13 @@
         android:padding="18dp">
 
         <EditText
+            android:id="@+id/edtUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
             android:fontFamily="@font/urbanist_semibold"
-            android:text="Jawir"
+            android:text="Fullname"
             android:textColor="#6A707C"
             android:textSize="14sp" />
 
@@ -73,31 +64,6 @@
             android:src="@drawable/baseline_edit_24" />
 
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/edtEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/rectangle_background"
-        android:backgroundTint="#F7F8F9"
-        android:padding="18dp">
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@null"
-            android:fontFamily="@font/urbanist_semibold"
-            android:text="Jawir@gmail.com"
-            android:textColor="#6A707C"
-            android:textSize="14sp" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_edit_24" />
     </LinearLayout>
 
     <LinearLayout
@@ -115,7 +81,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:fontFamily="@font/urbanist_semibold"
-            android:text="08181818181"
+            android:text="Number"
             android:textColor="#6A707C"
             android:textSize="14sp" />
 
@@ -125,14 +91,53 @@
             android:src="@drawable/baseline_edit_24" />
     </LinearLayout>
 
-    <Space
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="98dp" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/rectangle_background"
+        android:backgroundTint="#F7F8F9"
+        android:padding="18dp">
 
+        <EditText
+            android:id="@+id/campusName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:fontFamily="@font/urbanist_semibold"
+            android:text="Code Access University"
+            android:textColor="#6A707C"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_edit_24" />
+    </LinearLayout>
+    
     <Button
+        android:id="@+id/btnSave"
+        android:enabled="false"
+        android:textAllCaps="false"
+        android:layout_marginTop="10dp"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        android:layout_gravity="end"/>
+
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogout"
         android:layout_width="match_parent"
-        android:layout_height="63dp"
-        android:text="Logout" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="37dp"
+        android:height="56dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/rectangle_background_grey"
+        android:fontFamily="@font/urbanist_semibold"
+        android:text="Logout"
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
 
 </LinearLayout>
