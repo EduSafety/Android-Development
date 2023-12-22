@@ -14,6 +14,7 @@ import com.dicoding.edusafety.data.api.response.HistoryComplaintResponse
 import com.dicoding.edusafety.data.api.response.HistoryReportResponse
 import com.dicoding.edusafety.data.api.response.QuestionChoiceResponse
 import com.dicoding.edusafety.data.api.response.RecordItemCategory
+import com.dicoding.edusafety.data.api.response.RecordReportItem
 import com.dicoding.edusafety.repository.CurrentUserRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -43,6 +44,9 @@ class ReportViewModel(private val currentUserRepository: CurrentUserRepository) 
 
     private val _data3 = MutableLiveData<DataReport?>()
     val data3: MutableLiveData<DataReport?> = _data3
+
+    private val _data = MutableLiveData<List<RecordReportItem?>?>()
+    val data: MutableLiveData<List<RecordReportItem?>?> = _data
 
     private val _complaint = MutableLiveData<DataComplaint?>()
     val complaint: MutableLiveData<DataComplaint?> = _complaint
@@ -106,6 +110,39 @@ class ReportViewModel(private val currentUserRepository: CurrentUserRepository) 
                     }
 
                     override fun onFailure(call: Call<HistoryComplaintResponse>, t: Throwable) {
+                        _isLoading.value = false
+                        Log.e("ERROR ON FAILURE", "onFailure: ${t.message}")
+                    }
+                })
+            } catch (e: Exception) {
+                Log.d("ERROR GET Question", "$e")
+                Log.d("Token Catch GET Question", token)
+            }
+        }
+    }
+
+    fun getComplaintCategory(token: String, category_id: Int, limit: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val response = currentUserRepository.getComplaintAllHistory(token, category_id, limit)
+                response.enqueue(object : Callback<HistoryReportResponse> {
+                    override fun onResponse(
+                        call: Call<HistoryReportResponse>,
+                        response: Response<HistoryReportResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            val responseBody = response.body()
+                            val record = responseBody?.data?.record
+                            _data.value = record
+                            _isLoading.value = false
+                        } else {
+                            _isLoading.value = false
+                            Log.e("ERROR ON FAILURE", "onFailure: ${response.message()}")
+                        }
+
+                    }
+
+                    override fun onFailure(call: Call<HistoryReportResponse>, t: Throwable) {
                         _isLoading.value = false
                         Log.e("ERROR ON FAILURE", "onFailure: ${t.message}")
                     }

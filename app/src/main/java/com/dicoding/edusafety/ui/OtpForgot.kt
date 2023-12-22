@@ -30,7 +30,7 @@ class OtpForgot : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityOtpForgotBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        val email = intent.getStringExtra("email")
         with(binding) {
             setupTextWatcher(otp1, otp2, null)
             setupTextWatcher(otp2, otp3, otp1)
@@ -38,8 +38,6 @@ class OtpForgot : AppCompatActivity() {
             setupTextWatcher(otp4, null, otp3)
 
             verifyBtn.isEnabled = false // Initially, disable the Verify button
-            val email = intent.getStringExtra("email")
-
             resendOtp.setOnClickListener {
                 if (email != null) {
                     viewModel.resendOtp(email)
@@ -49,32 +47,32 @@ class OtpForgot : AppCompatActivity() {
                     Toast.makeText(this@OtpForgot,"Mengirim Otp", Toast.LENGTH_SHORT).show()
                 }
             }
+        }
 
-            //verify
-            verifyBtn.setOnClickListener{
-                val otp1Text = binding.otp1.text.toString()
-                val otp2Text = binding.otp2.text.toString()
-                val otp3Text = binding.otp3.text.toString()
-                val otp4Text = binding.otp4.text.toString()
+        //verify
+        binding.verifyBtn.setOnClickListener{
+            val otp1Text = binding.otp1.text.toString()
+            val otp2Text = binding.otp2.text.toString()
+            val otp3Text = binding.otp3.text.toString()
+            val otp4Text = binding.otp4.text.toString()
 
-                val otp = (otp1Text+otp2Text+otp3Text+otp4Text).toInt()
-                if (email != null) {
-                    viewModel.verifyOtpForgot(email,(otp1Text+otp2Text+otp3Text+otp4Text).toInt())
-                }
-                Log.d("CODE OTP ACTIVITY","$otp + $email")
-                viewModel.valitOtp.observe(this@OtpForgot, Observer { otpResp ->
-                    if(otpResp?.acknowledge == true){
-                        val intent = Intent(this@OtpForgot, CreateNewPassword::class.java)
-                        intent.putExtra("email",email)
-                        startActivity(intent)
-                        finish()
-                    }else if(otpResp?.acknowledge == false){
-                        showAlertDialog("Wrong OTP","Please Input Correct OTP","OK")
-                    }else{
-                        Log.d("Server Error","$otpResp")
-                    }
-                })
+            val otp = (otp1Text+otp2Text+otp3Text+otp4Text).toInt()
+            if (email != null) {
+                viewModel.verifyOtpForgot(email,(otp1Text+otp2Text+otp3Text+otp4Text).toInt())
             }
+            Log.d("CODE OTP ACTIVITY","$otp + $email")
+            viewModel.valitOtp.observe(this, Observer { otpResp ->
+                if(otpResp?.acknowledge == true){
+                    val intent = Intent(this, CreateNewPassword::class.java)
+                    intent.putExtra("email",email)
+                    startActivity(intent)
+                    finish()
+                }else if(otpResp?.acknowledge == false){
+                    showAlertDialog("Wrong OTP","Please Input Correct OTP","OK")
+                }else{
+                    Log.d("Server Error","$otpResp")
+                }
+            })
         }
         setUpBackButton()
     }

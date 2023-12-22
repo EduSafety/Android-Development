@@ -55,6 +55,7 @@ class DetailActivity : AppCompatActivity() {
                             binding.namaPelaku.text = data.perpetrator
                             binding.tvTanggalKejadian.text = data.incidentDate.toString()
                             binding.tvKronologi.text = data.description
+                            binding.tvUniversitas.text = data.institutionName
                             val originalUrl = data.file
 
                             val modifiedUrl = originalUrl?.let { transformUrl(it) }

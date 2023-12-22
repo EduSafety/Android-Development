@@ -73,13 +73,13 @@ class HomeFragment : Fragment() {
                     viewModelData.getComplaintCategory2(token,2,30)
                     viewModelData.data2.observe(requireActivity(), Observer { data ->
                         if(data != null){
-                            binding.socialNumber.text = data.total.toString()
+                            binding.physicalNumber.text = data.total.toString()
                         }
                     })
                     viewModelData.getComplaintCategory3(token,3,30)
                     viewModelData.data3.observe(requireActivity(), Observer { data ->
                         if(data != null){
-                            binding.physicalNumber.text = data.total.toString()
+                            binding.socialNumber.text = data.total.toString()
                         }
                     })
                     viewModel.currentUser.observe(requireActivity(), Observer { user ->
