@@ -21,7 +21,7 @@
     <string name="nama">Dave Leonard</string>
     <string name="nama_pelaku">Nama Pelaku</string>
     <string name="universitas">Universitas</string>
-    <string name="tanngal_kejadian">Tanngal Kejadian</string>
+    <string name="tanggal_kejadian">Tanggal Kejadian</string>
     <string name="kronologi">Kronologi</string>
     <string name="bukti">Bukti</string>
     <string name="submit">Submit</string>

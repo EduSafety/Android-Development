@@ -33,16 +33,16 @@
             android:fontFamily="@font/urbanist_bold"
             android:text="Universitas Indonesia"
             android:textColor="@color/black"
-            android:textSize="14sp"/>
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/reportNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/urbanist_medium"
             android:text="Pengaduan : 20"
             android:textColor="@color/black"
-            android:fontFamily="@font/urbanist_medium"
-            android:textSize="12sp"/>
+            android:textSize="14sp" />
 
     </LinearLayout>
 
@@ -50,9 +50,9 @@
         android:id="@+id/rankNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
         android:text="Rank 1"
         android:textColor="@color/black"
-        android:fontFamily="@font/urbanist_medium"
-        android:textSize="12sp"/>
+        android:textSize="16sp" />
 
 </LinearLayout>

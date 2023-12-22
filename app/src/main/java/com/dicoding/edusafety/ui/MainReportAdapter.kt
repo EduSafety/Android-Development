@@ -8,9 +8,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.edusafety.R
-import com.dicoding.edusafety.data.model.MyItem
+import com.dicoding.edusafety.data.model.MyCategory
 
-class MainReportAdapter(private val itemList: List<MyItem>) :
+class MainReportAdapter(private val itemList: List<MyCategory>) :
     RecyclerView.Adapter<MainReportAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,7 +32,6 @@ class MainReportAdapter(private val itemList: List<MyItem>) :
 
             // Mengirim data ke ReportActivity
             intent.putExtra("selectedCategory", item.title)
-
             context.startActivity(intent)
         }
     }

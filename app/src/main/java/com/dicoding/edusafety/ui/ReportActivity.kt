@@ -1,26 +1,26 @@
 package com.dicoding.edusafety.ui
 
-import android.Manifest
 import android.app.DatePickerDialog
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.location.LocationListener
-import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.dicoding.edusafety.R
 import com.dicoding.edusafety.data.model.ReportData
 import com.dicoding.edusafety.databinding.ActivityReportBinding
 import com.dicoding.edusafety.helper.ReportDataHolder
+import com.dicoding.edusafety.viewmodel.MainViewModel
+import com.dicoding.edusafety.viewmodel.ReportViewModel
+import com.dicoding.edusafety.viewmodel.ViewModelFactory
+import com.dicoding.edusafety.viewmodel.ViewModelFactoryApi
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import java.text.SimpleDateFormat
@@ -30,27 +30,8 @@ import java.util.Locale
 class ReportActivity : AppCompatActivity() {
     private lateinit var binding: ActivityReportBinding
     private val myCalendar = Calendar.getInstance()
-
     private var currentImageUri: Uri? = null
-    private lateinit var locationManager: LocationManager
-    private lateinit var locationListener: LocationListener
 
-    private val requestPermissionLauncher =
-        registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
-        ) { isGranted: Boolean ->
-            if (isGranted) {
-                Toast.makeText(this, "Permission request granted", Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(this, "Permission request denied", Toast.LENGTH_LONG).show()
-            }
-        }
-
-    private fun allPermissionsGranted() =
-        ContextCompat.checkSelfPermission(
-            this,
-            REQUIRED_PERMISSION
-        ) == PackageManager.PERMISSION_GRANTED
 
     private val launcherGallery = registerForActivityResult(
         ActivityResultContracts.PickVisualMedia()
@@ -80,23 +61,43 @@ class ReportActivity : AppCompatActivity() {
         binding = ActivityReportBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (!allPermissionsGranted()) {
-            requestPermissionLauncher.launch(REQUIRED_PERMISSION)
-        }
 
         // Ambil data yang dikirimkan dari adapter
         val selectedTitle = intent.getStringExtra("selectedCategory")
 
         // Ganti isi dari AutoCompleteTextView
-        binding.autoComplete.setText(selectedTitle ?: "Social")
+        binding.autoComplete.setText(selectedTitle ?: "Pilih Kategori")
 
-        setupDropdown()
+//        setupDropdown()
         setupDatePicker()
         setupBackButton()
 
         binding.imageAttachFile.setOnClickListener{
             startGallery()
         }
+
+
+        val factoryPref: ViewModelFactoryApi = ViewModelFactoryApi.getInstance(this)
+        val viewModel = ViewModelProvider(this, factoryPref)[ReportViewModel::class.java]
+
+        val factoryDS: ViewModelFactory = ViewModelFactory.getInstance(this)
+        val viewModelDS = ViewModelProvider(this, factoryDS)[MainViewModel::class.java]
+
+        viewModelDS.getTokenUser().observe(this, Observer { token ->
+            if (token != null) {
+                viewModel.getCategory(token)
+                viewModel.category.observe(this, Observer { record ->
+                    Log.d("Observer Record","$record")
+                    record?.let {
+                        val categoryNameList = it.mapNotNull { recordItem -> recordItem?.name }
+                        val adapter = ArrayAdapter(this, R.layout.dropdown_item, categoryNameList)
+                        Log.d("LIST","$categoryNameList")
+                        binding.autoComplete.setAdapter(adapter)
+                    }
+                })
+            }
+        })
+
         binding.btnNext.setOnClickListener {
             if (areAllFieldsFilled()) {
                 // Success
@@ -104,15 +105,31 @@ class ReportActivity : AppCompatActivity() {
                 val perpetratorName = binding.edtNamaPelaku.text.toString()
                 val victimName = binding.edtNamaKorban.text.toString()
                 val incidentDate = binding.tvDate.text.toString()
+
                 val description = binding.edtDescription.text.toString()
 
                 // Create ReportData instance
-                val reportData = ReportData(category, perpetratorName, victimName, incidentDate, description)
+                val reportData = ReportData(category, perpetratorName, victimName, incidentDate, description, currentImageUri)
 
                 // Store data in ReportDataHolder
                 ReportDataHolder.reportData = reportData
-
-                startActivity(Intent(this, QuestionActivity2::class.java))
+                if(category == "Verbal Abuse"){
+                    val idCategory = 1
+                    val intent = Intent(this, QuestionActivity2::class.java)
+                    intent.putExtra("idCategory","$idCategory")
+                    startActivity(intent)
+                } else if (category == "Physical Assault"){
+                    val idCategory = 2
+                    val intent = Intent(this, QuestionActivity2::class.java)
+                    intent.putExtra("idCategory","$idCategory")
+                    startActivity(intent)
+                }
+                else if (category == "Social"){
+                    val idCategory = 3
+                    val intent = Intent(this, QuestionActivity2::class.java)
+                    intent.putExtra("idCategory","$idCategory")
+                    startActivity(intent)
+                }
             } else {
                 // Display error messages for empty fields
                 checkAndSetErrorForEmptyField(binding.edtNamaKorban, binding.containerEdtNamaKorban, "Nama Korban is required")
@@ -128,12 +145,32 @@ class ReportActivity : AppCompatActivity() {
         setupTextChangeListener(binding.edtDescription, binding.containerDescription, "Description is required")
     }
 
-
-    private fun setupDropdown() {
-        val category = resources.getStringArray(R.array.report_category)
-        val adapter = ArrayAdapter(this, R.layout.dropdown_item, category)
-        binding.autoComplete.setAdapter(adapter)
-    }
+//    private fun setupDropdown() {
+////        val category = resources.getStringArray(R.array.report_category)
+//
+//        val factoryPref: ViewModelFactoryApi = ViewModelFactoryApi.getInstance(this)
+//        val viewModel = ViewModelProvider(this, factoryPref)[ReportViewModel::class.java]
+//
+//        val factoryDS: ViewModelFactory = ViewModelFactory.getInstance(this)
+//        val viewModelDS = ViewModelProvider(this, factoryDS)[MainViewModel::class.java]
+//
+//        viewModelDS.getTokenUser().observe(this, Observer { token ->
+//            if (token != null) {
+//                viewModel.getCategory(token)
+//                viewModel.category.observe(this, Observer { record ->
+//                    Log.d("Observer Record","$record")
+//                    record?.let {
+//                        val categoryNameList = it.mapNotNull { recordItem -> recordItem?.name }
+//                        val idCategory = it.mapNotNull { recordItem -> recordItem?.categoryId }
+//                        val adapter = ArrayAdapter(this, R.layout.dropdown_item, categoryNameList)
+//                        Log.d("LIST","$categoryNameList")
+//                        binding.autoComplete.setAdapter(adapter)
+//                    }
+//                })
+//            }
+//        })
+//
+//    }
 
     private fun setupDatePicker() {
         val datePicker = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
@@ -155,14 +192,16 @@ class ReportActivity : AppCompatActivity() {
     }
 
     private fun updateDateText() {
-        val myFormat = "dd-MM-yyyy"
-        val sdf = SimpleDateFormat(myFormat, Locale.US)
+        val myFormat = "yyyy-MM-dd"
+        val sdf = SimpleDateFormat(myFormat, Locale.getDefault())
         binding.tvDate.setText(sdf.format(myCalendar.time))
+        Log.d("SDF",sdf.format(myCalendar.time))
     }
 
     private fun setupBackButton() {
         binding.backButton.setOnClickListener {
-            onBackPressed()
+            startActivity(Intent(this, MainActivity::class.java))
+            finishAffinity()
         }
     }
 
@@ -199,9 +238,5 @@ class ReportActivity : AppCompatActivity() {
 
             override fun afterTextChanged(s: Editable?) {}
         })
-    }
-
-    companion object {
-        private const val REQUIRED_PERMISSION = Manifest.permission.CAMERA
     }
 }

@@ -2,20 +2,23 @@ package com.dicoding.edusafety.data.api.response
 
 import com.google.gson.annotations.SerializedName
 
-data class GeneralResponse(
+data class LeaderboardResponse(
 
 	@field:SerializedName("acknowledge")
 	val acknowledge: Boolean? = null,
 
 	@field:SerializedName("data")
-	val data: GeneralData? = null,
+	val data: List<DataLeaderboard?>? = null,
 
 	@field:SerializedName("message")
 	val message: String? = null
 )
 
-data class GeneralData(
+data class DataLeaderboard(
 
-	@field:SerializedName("id")
-	val id: Int? = null
+	@field:SerializedName("total_complaints")
+	val totalComplaints: Int? = null,
+
+	@field:SerializedName("name")
+	val name: String? = null
 )

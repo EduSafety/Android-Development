@@ -8,22 +8,13 @@ data class QuestionChoiceResponse(
 	val acknowledge: Boolean? = null,
 
 	@field:SerializedName("data")
-	val data: List<DataItem?>? = null,
+	val data: List<DataItemQuestion?>? = null,
 
 	@field:SerializedName("message")
 	val message: String? = null
 )
 
-data class ChoicesItem(
-
-	@field:SerializedName("id")
-	val id: Int? = null,
-
-	@field:SerializedName("text")
-	val text: String? = null
-)
-
-data class DataItem(
+data class DataItemQuestion(
 
 	@field:SerializedName("category_id")
 	val categoryId: Int? = null,
@@ -39,4 +30,13 @@ data class DataItem(
 
 	@field:SerializedName("question_id")
 	val questionId: Int? = null
+)
+
+data class ChoicesItem(
+
+	@field:SerializedName("id")
+	val id: Int? = null,
+
+	@field:SerializedName("text")
+	val text: String? = null
 )

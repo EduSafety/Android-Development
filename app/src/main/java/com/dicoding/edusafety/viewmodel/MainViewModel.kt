@@ -9,6 +9,10 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.dicoding.edusafety.data.api.response.CurrentUserResponse
 import com.dicoding.edusafety.data.api.response.Data
+import com.dicoding.edusafety.data.api.response.DataLeaderboard
+import com.dicoding.edusafety.data.api.response.HistoryReportResponse
+import com.dicoding.edusafety.data.api.response.LeaderboardResponse
+import com.dicoding.edusafety.data.api.response.RecordReportItem
 import com.dicoding.edusafety.data.pref.UserModel
 import com.dicoding.edusafety.repository.CurrentUserRepository
 import com.dicoding.edusafety.repository.UserRepository
@@ -40,6 +44,12 @@ class MainViewModelApi(private val currentUserRepository: CurrentUserRepository)
 
     private val _currentUser = MutableLiveData<Data?>()
     val currentUser: MutableLiveData<Data?> = _currentUser
+
+    private val _leaderBoard = MutableLiveData<List<DataLeaderboard?>?>()
+    val leaderBoard: MutableLiveData<List<DataLeaderboard?>?> = _leaderBoard
+
+    private val _recordReport = MutableLiveData<List<RecordReportItem?>?>()
+    val recordReport: MutableLiveData<List<RecordReportItem?>?> = _recordReport
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -78,20 +88,20 @@ class MainViewModelApi(private val currentUserRepository: CurrentUserRepository)
         }
     }
 
-    fun getRecentReport(token: String){
+    fun getLeaderboard(token: String){
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val response = currentUserRepository.currentUser(token)
-                response.enqueue(object : Callback<CurrentUserResponse> {
+                val response = currentUserRepository.getLeaderboard(token)
+                response.enqueue(object : Callback<LeaderboardResponse> {
                     override fun onResponse(
-                        call: Call<CurrentUserResponse>,
-                        response: Response<CurrentUserResponse>
+                        call: Call<LeaderboardResponse>,
+                        response: Response<LeaderboardResponse>
                     ) {
                         if (response.isSuccessful) {
                             val responseBody = response.body()
-                            val fullname = responseBody?.data?.fullname
-                            _currentUser.value = responseBody?.data
-                            Log.d("FULLNAME", "$fullname")
+                            val data = responseBody?.data
+                            _leaderBoard.value = data
+                            Log.d("DATA LEADERBOARD", "$data")
                             _isLoading.value = false
                         } else {
                             _isLoading.value = false
@@ -100,7 +110,75 @@ class MainViewModelApi(private val currentUserRepository: CurrentUserRepository)
 
                     }
 
-                    override fun onFailure(call: Call<CurrentUserResponse>, t: Throwable) {
+                    override fun onFailure(call: Call<LeaderboardResponse>, t: Throwable) {
+                        _isLoading.value = false
+                        Log.e("ERROR ON FAILURE", "onFailure: ${t.message}")
+                    }
+                })
+            } catch (e: Exception) {
+                Log.d("ERROR GET CURRENT USER", "$e")
+                Log.d("Token Catch Current User", token)
+            }
+        }
+    }
+
+    fun getAllRecentReport(token: String){
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val response = currentUserRepository.getAllReportHistory(token)
+                response.enqueue(object : Callback<HistoryReportResponse> {
+                    override fun onResponse(
+                        call: Call<HistoryReportResponse>,
+                        response: Response<HistoryReportResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            val responseBody = response.body()
+                            val record = responseBody?.data?.record
+                            _recordReport.value = record
+                            Log.d("RECORD", "$record")
+                            _isLoading.value = false
+                        } else {
+                            _isLoading.value = false
+                            Log.e("ERROR ON FAILURE", "onFailure: ${response.message()}")
+                        }
+
+                    }
+
+                    override fun onFailure(call: Call<HistoryReportResponse>, t: Throwable) {
+                        _isLoading.value = false
+                        Log.e("ERROR ON FAILURE", "onFailure: ${t.message}")
+                    }
+                })
+            } catch (e: Exception) {
+                Log.d("ERROR GET CURRENT USER", "$e")
+                Log.d("Token Catch Current User", token)
+            }
+        }
+    }
+
+    fun getRecentReport(token: String){
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val response = currentUserRepository.getReportHistory(token)
+                response.enqueue(object : Callback<HistoryReportResponse> {
+                    override fun onResponse(
+                        call: Call<HistoryReportResponse>,
+                        response: Response<HistoryReportResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            val responseBody = response.body()
+                            val record = responseBody?.data?.record
+                            _recordReport.value = record
+                            Log.d("RECORD", "$record")
+                            _isLoading.value = false
+                        } else {
+                            _isLoading.value = false
+                            Log.e("ERROR ON FAILURE", "onFailure: ${response.message()}")
+                        }
+
+                    }
+
+                    override fun onFailure(call: Call<HistoryReportResponse>, t: Throwable) {
                         _isLoading.value = false
                         Log.e("ERROR ON FAILURE", "onFailure: ${t.message}")
                     }

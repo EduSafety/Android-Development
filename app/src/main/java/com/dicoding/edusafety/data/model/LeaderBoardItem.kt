@@ -5,5 +5,4 @@ data class LeaderBoardItem(
     val univName: String,
     val reportNumber: String,
     val rankNumber : String
-
 )

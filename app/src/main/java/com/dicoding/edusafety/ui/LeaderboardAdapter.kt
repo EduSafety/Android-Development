@@ -7,10 +7,18 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.edusafety.R
-import com.dicoding.edusafety.data.model.LeaderBoardItem
+import com.dicoding.edusafety.data.api.response.DataLeaderboard
+import java.util.Collections
 
-class LeaderboardAdapter(private val itemList: List<LeaderBoardItem>) :
+class LeaderboardAdapter(private val itemList: List<DataLeaderboard?>?) :
     RecyclerView.Adapter<LeaderboardAdapter.ViewHolder>() {
+
+    init {
+        // Urutkan itemList secara descending berdasarkan totalComplaints
+        itemList?.let {
+            Collections.sort(it, compareByDescending { it?.totalComplaints })
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
@@ -19,16 +27,17 @@ class LeaderboardAdapter(private val itemList: List<LeaderBoardItem>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = itemList[position]
-
-        holder.imageView.setImageResource(item.imageResource)
-        holder.univName.text = item.univName
-        holder.reportNumber.text = item.reportNumber
-        holder.rankNumber.text = item.rankNumber
+        val item = itemList?.get(position)
+        if (item != null){
+            //        holder.imageView.setImageResource(item.imageResource)
+            holder.univName.text = item.name
+            holder.reportNumber.text = "Total Report : "+item.totalComplaints.toString()
+            holder.rankNumber.text = (1 + position).toString()
+        }
     }
 
     override fun getItemCount(): Int {
-        return itemList.size
+        return itemList?.size ?: 0
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

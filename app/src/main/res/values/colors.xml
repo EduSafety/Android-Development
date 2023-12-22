@@ -10,5 +10,6 @@
     <color name="gray_light">#F7F8F9</color>
     <color name="primary">#35C2C1</color>
     <color name="danger">#DB3739</color>
-
+    <color name="middle">#f1c40f</color>
+    <color name="low">#35C2C1</color>
 </resources>

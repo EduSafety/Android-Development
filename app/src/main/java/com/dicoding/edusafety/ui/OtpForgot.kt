@@ -14,23 +14,21 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.dicoding.edusafety.R
-import com.dicoding.edusafety.databinding.ActivityOtpBinding
+import com.dicoding.edusafety.databinding.ActivityOtpForgotBinding
 import com.dicoding.edusafety.viewmodel.LoginViewModelFactory
 import com.dicoding.edusafety.viewmodel.RegisterViewModel
 
-class Otp : AppCompatActivity() {
-
-    private lateinit var binding: ActivityOtpBinding
+class OtpForgot : AppCompatActivity() {
+    private lateinit var binding: ActivityOtpForgotBinding
     private var isCountdownRunning = false
     private var countdownTimer: CountDownTimer? = null
 
     private val viewModel by viewModels<RegisterViewModel> {
         LoginViewModelFactory.getInstance()
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityOtpBinding.inflate(layoutInflater)
+        binding = ActivityOtpForgotBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         with(binding) {
@@ -40,20 +38,15 @@ class Otp : AppCompatActivity() {
             setupTextWatcher(otp4, null, otp3)
 
             verifyBtn.isEnabled = false // Initially, disable the Verify button
-            val fullname = intent.getStringExtra("fullname")
             val email = intent.getStringExtra("email")
-            val phone = intent.getStringExtra("phone")
-            val password = intent.getStringExtra("password")
-            val codeUniv = intent.getStringExtra("codeUniv")
-            val phoneConverted: Editable = Editable.Factory.getInstance().newEditable(phone)
-            //resend otp
+
             resendOtp.setOnClickListener {
-                if (email != null && fullname != null && phoneConverted != null && password != null && codeUniv != null) {
-                    viewModel.register(fullname,email,codeUniv,phoneConverted,password)
+                if (email != null) {
+                    viewModel.resendOtp(email)
                     disableVerifyButton()
                     startCountdown()
                     resendOtp.isClickable = false
-                    Toast.makeText(this@Otp,"Mengirim Otp",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@OtpForgot,"Mengirim Otp", Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -66,15 +59,19 @@ class Otp : AppCompatActivity() {
 
                 val otp = (otp1Text+otp2Text+otp3Text+otp4Text).toInt()
                 if (email != null) {
-                    viewModel.verifyOtp(email,(otp1Text+otp2Text+otp3Text+otp4Text).toInt())
+                    viewModel.verifyOtpForgot(email,(otp1Text+otp2Text+otp3Text+otp4Text).toInt())
                 }
                 Log.d("CODE OTP ACTIVITY","$otp + $email")
-                viewModel.valitOtp.observe(this@Otp, Observer { otpResp ->
-                    if(otpResp != null){
-                        startActivity(Intent(this@Otp, RegisterSuccessActivity::class.java))
+                viewModel.valitOtp.observe(this@OtpForgot, Observer { otpResp ->
+                    if(otpResp?.acknowledge == true){
+                        val intent = Intent(this@OtpForgot, CreateNewPassword::class.java)
+                        intent.putExtra("email",email)
+                        startActivity(intent)
                         finish()
-                    }else{
+                    }else if(otpResp?.acknowledge == false){
                         showAlertDialog("Wrong OTP","Please Input Correct OTP","OK")
+                    }else{
+                        Log.d("Server Error","$otpResp")
                     }
                 })
             }

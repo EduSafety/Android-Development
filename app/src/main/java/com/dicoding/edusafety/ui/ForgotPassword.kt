@@ -1,17 +1,22 @@
 package com.dicoding.edusafety.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
-import com.dicoding.edusafety.R
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.edusafety.databinding.ActivityForgotPasswordBinding
+import com.dicoding.edusafety.viewmodel.LoginViewModelFactory
+import com.dicoding.edusafety.viewmodel.RegisterViewModel
 
 class ForgotPassword : AppCompatActivity() {
     private lateinit var binding: ActivityForgotPasswordBinding
 
+    private val viewModel by viewModels<RegisterViewModel> {
+        LoginViewModelFactory.getInstance()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityForgotPasswordBinding.inflate(layoutInflater)
@@ -20,7 +25,9 @@ class ForgotPassword : AppCompatActivity() {
         emailFocusListener()
         setUpBackButton()
         binding.sendCodeBtn.setOnClickListener{
-            val intent = Intent(this@ForgotPassword, Otp::class.java)
+            val email = binding.edtEmail.text.toString()
+            viewModel.resendOtp(email)
+            val intent = Intent(this@ForgotPassword, OtpForgot::class.java)
             intent.putExtra("email",binding.edtEmail.text.toString())
             startActivity(intent)
         }
