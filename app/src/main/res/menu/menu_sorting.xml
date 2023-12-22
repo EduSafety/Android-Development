@@ -10,7 +10,7 @@
             android:title="@string/socialSort"
             app:showAsAction="never"/>
         <item
-            android:id="@+id/socailSort"
+            android:id="@+id/socialSort"
             android:title="@string/physicalSort"
             app:showAsAction="never"/>
     </group>

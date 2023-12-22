@@ -122,6 +122,7 @@ class ReportViewModel(private val currentUserRepository: CurrentUserRepository) 
     }
 
     fun getComplaintCategory(token: String, category_id: Int, limit: Int) {
+        _isLoading.value = true
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val response = currentUserRepository.getComplaintAllHistory(token, category_id, limit)

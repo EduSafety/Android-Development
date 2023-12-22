@@ -14,7 +14,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:clipToOutline="true"
-        android:src="@drawable/indo_univ"
+        android:src="@drawable/grad"
         android:outlineProvider="background"
         android:backgroundTint="#E8ECF4"
         android:background="@drawable/circle_background" />
