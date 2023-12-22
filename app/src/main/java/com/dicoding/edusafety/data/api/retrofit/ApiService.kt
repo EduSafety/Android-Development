@@ -2,7 +2,7 @@ package com.dicoding.edusafety.data.api.retrofit
 
 import android.text.Editable
 import com.dicoding.edusafety.data.api.response.CategoryResponse
-import com.dicoding.edusafety.data.api.response.CurrentUserResponse
+import com.dicoding.edusafety.data.api.response.CurrentUserResponseNew
 import com.dicoding.edusafety.data.api.response.GeneralResponse
 import com.dicoding.edusafety.data.api.response.HistoryComplaintResponse
 import com.dicoding.edusafety.data.api.response.HistoryReportResponse
@@ -70,7 +70,7 @@ interface ApiService {
     ): Response<GeneralResponse>
 
     @GET("user/current-user")
-    fun getCurrentUser(): Call<CurrentUserResponse>
+    fun getCurrentUser(): Call<CurrentUserResponseNew>
 
     @GET("/complaint/{id}")
     fun getHistoryComplaint(

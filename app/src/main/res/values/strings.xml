@@ -38,6 +38,9 @@
     <string name="send_code">Send Code</string>
     <string name="create_new_password">Create new password</string>
     <string name="create_new_password_desc">Your new password must be unique from those previously used.</string>
+    <string name="verbalSort">Verbal</string>
+    <string name="socialSort">Social</string>
+    <string name="physicalSort">Physical</string>
 
     <string-array name="report_category">
         <item>Verbal Abuse</item>

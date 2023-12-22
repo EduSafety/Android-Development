@@ -24,7 +24,6 @@ class MainRecentAdapter(private val itemList: List<RecordReportItem?>?) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = itemList?.get(position)
         if (item != null){
-            val itemFile = item.file.toString()
             Glide.with(holder.itemView.context)
                 .load(R.drawable.baseline_report_24)
                 .into(holder.imageView)

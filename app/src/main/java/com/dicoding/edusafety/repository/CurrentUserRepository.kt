@@ -2,7 +2,7 @@ package com.dicoding.edusafety.repository
 
 import android.text.Editable
 import com.dicoding.edusafety.data.api.response.CategoryResponse
-import com.dicoding.edusafety.data.api.response.CurrentUserResponse
+import com.dicoding.edusafety.data.api.response.CurrentUserResponseNew
 import com.dicoding.edusafety.data.api.response.GeneralResponse
 import com.dicoding.edusafety.data.api.response.HistoryComplaintResponse
 import com.dicoding.edusafety.data.api.response.HistoryReportResponse
@@ -20,7 +20,7 @@ class CurrentUserRepository private constructor(
     private val apiService: ApiService, private val pref: UserPreference
 ) {
 
-    fun currentUser(token: String): Call<CurrentUserResponse> {
+    fun currentUser(token: String): Call<CurrentUserResponseNew> {
         val apiService = ApiConfig.getApiServiceToken(token)
         return apiService.getCurrentUser()
     }

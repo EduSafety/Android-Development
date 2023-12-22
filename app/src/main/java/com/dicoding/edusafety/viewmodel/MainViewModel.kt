@@ -7,9 +7,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.dicoding.edusafety.data.api.response.CurrentUserResponse
-import com.dicoding.edusafety.data.api.response.Data
+import com.dicoding.edusafety.data.api.response.CurrentUserResponseNew
 import com.dicoding.edusafety.data.api.response.DataLeaderboard
+import com.dicoding.edusafety.data.api.response.DataNew
 import com.dicoding.edusafety.data.api.response.HistoryReportResponse
 import com.dicoding.edusafety.data.api.response.LeaderboardResponse
 import com.dicoding.edusafety.data.api.response.RecordReportItem
@@ -42,8 +42,8 @@ class MainViewModel(private val repository: UserRepository) : ViewModel() {
 
 class MainViewModelApi(private val currentUserRepository: CurrentUserRepository) : ViewModel() {
 
-    private val _currentUser = MutableLiveData<Data?>()
-    val currentUser: MutableLiveData<Data?> = _currentUser
+    private val _currentUser = MutableLiveData<DataNew?>()
+    val currentUser: MutableLiveData<DataNew?> = _currentUser
 
     private val _leaderBoard = MutableLiveData<List<DataLeaderboard?>?>()
     val leaderBoard: MutableLiveData<List<DataLeaderboard?>?> = _leaderBoard
@@ -58,16 +58,14 @@ class MainViewModelApi(private val currentUserRepository: CurrentUserRepository)
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val response = currentUserRepository.currentUser(token)
-                response.enqueue(object : Callback<CurrentUserResponse> {
+                response.enqueue(object : Callback<CurrentUserResponseNew> {
                     override fun onResponse(
-                        call: Call<CurrentUserResponse>,
-                        response: Response<CurrentUserResponse>
+                        call: Call<CurrentUserResponseNew>,
+                        response: Response<CurrentUserResponseNew>
                     ) {
                         if (response.isSuccessful) {
                             val responseBody = response.body()
-                            val fullname = responseBody?.data?.fullname
                             _currentUser.value = responseBody?.data
-                            Log.d("FULLNAME", "$fullname")
                             _isLoading.value = false
                         } else {
                             _isLoading.value = false
@@ -76,7 +74,7 @@ class MainViewModelApi(private val currentUserRepository: CurrentUserRepository)
 
                     }
 
-                    override fun onFailure(call: Call<CurrentUserResponse>, t: Throwable) {
+                    override fun onFailure(call: Call<CurrentUserResponseNew>, t: Throwable) {
                         _isLoading.value = false
                         Log.e("ERROR ON FAILURE", "onFailure: ${t.message}")
                     }
