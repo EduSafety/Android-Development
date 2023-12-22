@@ -4,7 +4,7 @@
 
 #### Your Voice Against Violence
 
-This repository is the Capstone Project in [Bangkit Academy](https://grow.google/intl/id_id/bangkit/) 2022. This application is purpose to help user to Report Violence.<br><br>
+This repository is the Capstone Project in [Bangkit Academy](https://grow.google/intl/id_id/bangkit/) 2023. This application is purpose to help user to Report Violence.<br><br>
 [![Platform](https://img.shields.io/badge/platform-Android-green.svg)](http://developer.android.com/index.html)<br>
 
 ## Demo Video
@@ -24,7 +24,7 @@ This repository is the Capstone Project in [Bangkit Academy](https://grow.google
 
 # Application Install
 
-***You can Install and test latest Next Hotel app from below 👇***
+***You can Install and test latest Edu Safety app from below 👇***
 
 [![NEXTHOTEL](https://img.shields.io/badge/EduSafety✅-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/Next-Carlos/NP/releases/download/v1.0.0/app-debug.apk)
 
