@@ -49,9 +49,6 @@ class LoginActivity : AppCompatActivity() {
                 val viewModelApi =
                     ViewModelProvider(this, factoryApi)[LoginActivityViewModel::class.java]
 
-                val factoryPref: ViewModelFactory = ViewModelFactory.getInstance(this)
-                val viewModel = ViewModelProvider(this, factoryPref)[LoginViewModel::class.java]
-
                 viewModelApi.isLoading.observe(this) {
                     showLoading(it)
                     Log.d("LOADING", "$it")

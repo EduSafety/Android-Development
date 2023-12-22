@@ -10,19 +10,21 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.edusafety.R
+import com.dicoding.edusafety.databinding.FragmentLeaderboardBinding
 import com.dicoding.edusafety.viewmodel.MainViewModel
 import com.dicoding.edusafety.viewmodel.MainViewModelApi
 import com.dicoding.edusafety.viewmodel.ViewModelFactory
 import com.dicoding.edusafety.viewmodel.ViewModelFactoryApi
 
 class LeaderboardFragment : Fragment() {
-
+    private lateinit var binding: FragmentLeaderboardBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_leaderboard, container, false)
+        binding = FragmentLeaderboardBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,6 +42,10 @@ class LeaderboardFragment : Fragment() {
         val factoryDS: ViewModelFactory = ViewModelFactory.getInstance(requireContext())
         val viewModelDS = ViewModelProvider(this, factoryDS)[MainViewModel::class.java]
 
+        viewModel.isLoading.observe(requireActivity()) {
+            showLoading(it)
+        }
+
         viewModelDS.getTokenUser().observe(requireActivity(), Observer { token ->
             if (token != null){
                 viewModel.getLeaderboard(token)
@@ -51,22 +57,12 @@ class LeaderboardFragment : Fragment() {
                 })
             }
         })
-//        val itemList = listOf(
-//            LeaderBoardItem(R.drawable.indo_univ,"Universitas Indonesia", "Pengaduan : 2000", "Rank : 1"),
-//            LeaderBoardItem(R.drawable.indo_univ,"Universitas Indonesia", "Pengaduan : 2000", "Rank : 1"),
-//            LeaderBoardItem(R.drawable.indo_univ,"Universitas Indonesia", "Pengaduan : 2000", "Rank : 1"),
-//            LeaderBoardItem(R.drawable.indo_univ,"Universitas Indonesia", "Pengaduan : 2000", "Rank : 1"),
-//            LeaderBoardItem(R.drawable.indo_univ,"Universitas Indonesia", "Pengaduan : 2000", "Rank : 1"),
-//            LeaderBoardItem(R.drawable.indo_univ,"Universitas Indonesia", "Pengaduan : 2000", "Rank : 1"),
-//            LeaderBoardItem(R.drawable.indo_univ,"Universitas Indonesia", "Pengaduan : 2000", "Rank : 1"),
-//            LeaderBoardItem(R.drawable.indo_univ,"Universitas Indonesia", "Pengaduan : 2000", "Rank : 1"),
-//            LeaderBoardItem(R.drawable.indo_univ,"Universitas Indonesia", "Pengaduan : 2000", "Rank : 1"),
-//            LeaderBoardItem(R.drawable.indo_univ,"Universitas Indonesia", "Pengaduan : 2000", "Rank : 1"),
-//            LeaderBoardItem(R.drawable.indo_univ,"Universitas Indonesia", "Pengaduan : 2000", "Rank : 1"),
-//        )
-
-//        val adapter = LeaderboardAdapter(itemList)
-//        recyclerView.adapter = adapter
     }
-
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.GONE
+        }
+    }
 }

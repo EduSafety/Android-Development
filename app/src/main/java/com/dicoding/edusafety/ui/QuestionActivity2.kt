@@ -61,11 +61,6 @@ class QuestionActivity2 : AppCompatActivity(), QuestionAdapter.ClearFocusListene
                     Log.d("ID INTENT", "$id")
                 }
             })
-//            if (isAllQuestionsAnswered()) {
-//                startActivity(Intent(this, DetailActivity::class.java))
-//            } else {
-//                Toast.makeText(this, "Mohon jawab semua pertanyaan", Toast.LENGTH_SHORT).show()
-//            }
         }
 
 

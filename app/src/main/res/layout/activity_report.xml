@@ -213,7 +213,7 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/urbanist_bold"
                 android:gravity="center"
-                android:text="Lampirkan Bukti (Opsional)"
+                android:text="Lampirkan Bukti"
                 android:textColor="#ccc"
                 android:textSize="16sp"
                 android:textStyle="bold"

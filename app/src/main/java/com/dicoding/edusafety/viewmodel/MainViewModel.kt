@@ -87,6 +87,7 @@ class MainViewModelApi(private val currentUserRepository: CurrentUserRepository)
     }
 
     fun getLeaderboard(token: String){
+        _isLoading.value = true
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val response = currentUserRepository.getLeaderboard(token)
@@ -121,6 +122,7 @@ class MainViewModelApi(private val currentUserRepository: CurrentUserRepository)
     }
 
     fun getAllRecentReport(token: String){
+        _isLoading.value = true
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val response = currentUserRepository.getAllReportHistory(token)
@@ -155,6 +157,7 @@ class MainViewModelApi(private val currentUserRepository: CurrentUserRepository)
     }
 
     fun getRecentReport(token: String){
+        _isLoading.value = true
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val response = currentUserRepository.getReportHistory(token)

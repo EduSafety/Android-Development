@@ -2,6 +2,8 @@ package com.dicoding.edusafety.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -48,6 +50,9 @@ class ReportHistoryActivity : AppCompatActivity() {
         val factoryDS: ViewModelFactory = ViewModelFactory.getInstance(this)
         val viewModelDS = ViewModelProvider(this, factoryDS)[MainViewModel::class.java]
 
+        viewModel.isLoading.observe(this) {
+            showLoading(it)
+        }
         // Set a click listener for each item in the menu
         popupMenu.setOnMenuItemClickListener { item ->
             when (item.itemId) {
@@ -79,7 +84,7 @@ class ReportHistoryActivity : AppCompatActivity() {
                     })
                     true
                 }
-                R.id.socailSort -> {
+                R.id.socialSort -> {
                     viewModelDS.getTokenUser().observe(this, Observer { token ->
                         if (token != null){
                             viewModel.getComplaintCategory(token,3,30)
@@ -109,6 +114,10 @@ class ReportHistoryActivity : AppCompatActivity() {
         val factoryDS: ViewModelFactory = ViewModelFactory.getInstance(this)
         val viewModelDS = ViewModelProvider(this, factoryDS)[MainViewModel::class.java]
 
+        viewModel.isLoading.observe(this) {
+            showLoading(it)
+        }
+
         viewModelDS.getTokenUser().observe(this, Observer { token ->
             if (token != null){
                 viewModel.getAllRecentReport(token)
@@ -120,5 +129,13 @@ class ReportHistoryActivity : AppCompatActivity() {
                 })
             }
         })
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.GONE
+        }
     }
 }
