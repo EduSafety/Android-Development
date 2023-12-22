@@ -4,7 +4,7 @@
 
 #### Your Voice Against Violence
 
-This repository is the Capstone Project in [Bangkit Academy](https://grow.google/intl/id_id/bangkit/) 2022. This application is purpose to help user to get hotel recommendations.<br><br>
+This repository is the Capstone Project in [Bangkit Academy](https://grow.google/intl/id_id/bangkit/) 2022. This application is purpose to help user to Report Violence.<br><br>
 [![Platform](https://img.shields.io/badge/platform-Android-green.svg)](http://developer.android.com/index.html)<br>
 
 ## Demo Video
