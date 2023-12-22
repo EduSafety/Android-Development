@@ -11,15 +11,15 @@ This repository is the Capstone Project in [Bangkit Academy](https://grow.google
 [![IMAGE ALT TEXT HERE](media/Frame_106.png)](https://drive.google.com/file/d/1RLlM7h8_eyaFOyGvSXGUZ13e0wtaAIUO/view?usp=sharing)
 
 ## Our Team
-| Name                            | Bangkit-ID    | Path               |
-| -------------                   | ------------- | -------------      |
-| Alya Zahra Siknun               | M001BSX1862   | Machine Learning   |
-| Di Muhammad Zulfa Ridha         | M322BSY1162   | Machine Learning   |
-| Arief Khoirul Anwar             | M658BSY1552   | Machine Learning   |
-| Ahmad Algifari                  | C156BSY3278   | Cloud Computing    |
-| Laila Amanda Fitria             | C156BSX3216   | Cloud Computing    |
-| Muhamad Daffa Ariftama          | A156BSY2130   | Mobile Development |
-| Rizki Nugroho                   | A182BSY2323   | Mobile Development |
+| Name                            | Bangkit-ID    | Path               | University                                |
+| -------------                   | ------------- | -------------      | -------------                             |
+| Alya Zahra Siknun               | M001BSX1862   | Machine Learning   | Institut Pertanian Bogor                  | 
+| Di Muhammad Zulfa Ridha         | M322BSY1162   | Machine Learning   | Syiah Kuala University                    |
+| Arief Khoirul Anwar             | M658BSY1552   | Machine Learning   | Doktor Husni Ingratubun Papua University  | 
+| Ahmad Algifari                  | C156BSY3278   | Cloud Computing    | STT Terpadu Nurul Fikri                   | 
+| Laila Amanda Fitria             | C156BSX3216   | Cloud Computing    | STT Terpadu Nurul Fikri                   | 
+| Muhamad Daffa Ariftama          | A156BSY2130   | Mobile Development | STT Terpadu Nurul Fikri                   | 
+| Rizki Nugroho                   | A182BSY2323   | Mobile Development | Amikom Purwokerto University              | 
 
 
 # Application Install
