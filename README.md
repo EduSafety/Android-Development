@@ -1,3 +1,20 @@
+# Important Before Use App or Register on App, Because without university code will not receive otp and turn on your internet!!! The University Code On Below !!
+## We only provide some university names because it is only for the purpose of application development
+| University Code                             | University Name    | 
+| ------------- | ------------- |
+| MSS               | Melia Sehat Sejahtera   
+| NF       | Nurul Fikri   |
+| IPB             | Institusi Pertanian Bogor   |
+| UI                  | Universitas Indonesia   | 
+| UB             | Universitas Brawijaya   | 
+| UP          | Universitas Pancasila   | 
+| GUNDAR                   | Universitas Gunadharma   | 
+
+<br>
+<br>
+<br>
+
+
 ![](media/logo.png)
 
 # **Edu Safety**
